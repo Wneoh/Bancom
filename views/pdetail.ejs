@@ -1,0 +1,34 @@
+<%- include('layouts/header'); -%>
+<div class="menu">
+    <a class="logo" href="/"><img  src="images/logo1.png" alt=""></a>
+    <div class="menu-container">
+            <a class="menu-item" href="/">Home</a>
+            <a class="menu-item" href="/login">Login</a>
+            <a class="menu-item" href="/addProduct">Add Product</a>
+    </div>
+</div>
+<body class="main2">
+<div class="detail-container">
+    <div class="detail">
+        <div class="detail-img">
+            <img src="<%= product.imageUrls %>" alt="">
+        </div>
+        <div class="detail-description">
+            <p style="margin-top:0px; font-weight: bold;"><%= product.brand %></p>
+            <p><%= product.title %></p>
+            <p style="margin-top:10px; font-weight: bold;">RM <%= product.price %></p>
+            <p style="margin-top:25px; font-weight: bold;">Description</p>
+            <div style="width:500px;">
+                <%- product.desp %>
+            </div>
+            <button type="button" class="addcart">Add To Cart</button>
+            <div class="goback">
+                <a class="gohome" href="/"> back to Home</a>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+</body>
+<%- include('layouts/footer'); -%>

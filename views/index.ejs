@@ -1,0 +1,93 @@
+<%- include('layouts/header'); -%>
+<div class="menu">
+  <a class="logo" href="/"><img  src="images/logo1.png" alt=""></a>
+  <div class="menu-container">
+        <div class="menu-item-con" id="menu-profile" onclick="myFunction()">
+          <div class="menu-item">
+            <img class="profile-icon" src="images/icons/user.png" alt="">
+            <br><strong>Account</strong>
+          </div>
+        </div>
+        <div id="profileDropdown" class="profile-dropdown">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="menu-item-con" href="/addProduct">
+          <div class="menu-item" >
+            <img src="images/icons/product.png" alt=""><br><strong>Add Product</strong></div>
+        </a>
+        <a class="menu-item-con"href="/cart">
+          <div class="menu-item" ><img class="cart-icon" src="images/icons/shopping-cart.png" alt=""><br><strong>cart</strong></div>
+          </a>
+  </div>
+</div>
+<div id="slideshow-container">
+  <ul id="slideshow-content">
+    <% for( let i =0; i<slide_hero.length;i++){ %>
+      <li><img src="<%= slide_hero[i]%>" alt=""></li>
+    <% }%>
+  </ul>
+</div>
+<div id ="dot-container"style="text-align:center; padding-top:15px">
+  <span class='dot'></span>
+  <span class='dot'></span>
+  <span class='dot'></span>
+  <span class='dot'></span>
+</div>
+<div class="main-container">
+    <div class="filter-container">
+      <div class="filter">
+        <span>Electronics</span>
+        <ul class="filter-list">
+          <li>
+            <a href="">Computer</a>
+          </li>
+          <li>
+            <a href="">Headphone</a>
+          </li>
+          <li>
+            <a href="">Cell Phone</a>
+          </li>
+          <li>
+            <a href="">Gaming Accessories</a>
+          </li>
+          <li>
+            <a href="">See All</a>
+          </li>
+        </ul>
+      </input>
+      </div>
+    </div>
+    <div class="products-container">
+      <% for( let i =0; i<products.length;i++){ %>
+        <div class="product">
+          <a class="detail-link" href="/pDetail?pid=<%=products[i]._id %>">
+          <div class="brief-container" >
+          <img class ="product-img" src="<%= products[i].imageUrls %>" alt="">
+          </div>
+          <p class="product-brand"><%= products[i].brand %></p> 
+          <div class="brief-title">
+            <p class="product-title"><%= products[i].title %></p>
+          </div>
+          <div class="brief-price">
+            <p class="product-price">RM <%= products[i].price %></p> 
+          </div>
+          </a>
+          <div class="btn-admin">
+            <form action="/editProduct" method="GET">
+              <input type="hidden" name="pid" value ="<%=products[i]._id %>">
+              <button type="submit">Edit</button>
+            </form>
+            <form class="form-delete" action="/deleteProduct" method="POST">
+            <button class="btn-delete" type="submit">Delete</button>
+            <input type="hidden" name="_csrf" id="csrf" value="<%=csrfToken %>">
+            <input type="hidden" name="pid" value ="<%=products[i]._id %>">
+          </form>
+          </div>
+        </div>
+        
+      <% } %>
+    </div>
+  </div>
+<%- include('layouts/footer'); -%>
