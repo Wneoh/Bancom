@@ -3,7 +3,7 @@
   display: flex;
   justify-content: flex-end;
   font-size:12px;
-  background-color:#0D3842;
+  background-color:#244657;;
   padding-left: 10px;
 }
 .menu-container{
@@ -11,15 +11,15 @@
   width: 245px;
 }
 .makeWhite{
-  background-color: rgb(244,244,244) ;
+  background-color: #e5e5e5;;
   transition: .1s;
   cursor: pointer;
-  color:#0D3842 !important;
+  color:#244657 !important;
 }
 
 .makeWhite:hover{
-  background-color:#0D3842 !important;
-  color:rgb(244,244,244) !important;
+  background-color:#244657 !important;
+  color:#e5e5e5 !important;
 }
 .makeWhite img{
   filter:invert(60%) sepia(10%) saturate(6800%) hue-rotate(156deg) brightness(66%) contrast(50%) !important;
@@ -28,7 +28,7 @@
 
 .profile-dropdown {
   display: none;
-  background-color: rgb(244,244,244);
+  background-color: #e5e5e5;
   min-width: 200px;
   height: auto;
   z-index: 1;
@@ -47,7 +47,7 @@
 }
 
 .profile-dropdown a:hover{
-  background-color:rgb(222, 225, 226) !important;
+  background-color:#cac9c9 !important;
   transition: .2s;
 }
 .menu-container a{
@@ -108,7 +108,7 @@ html{
 /* Slide */
 #slideshow-container{
   width: 100%;
-  height:400px;
+  height:500px;
   overflow: hidden;
 }
 
@@ -116,7 +116,7 @@ html{
   padding-left: 0px;
   list-style: none;
   display: flex;
-  width: 1600px;
+  width: 1800px;
   margin:0;
   position:relative;
   transition: 2s;
@@ -128,8 +128,8 @@ html{
 
 }
 #slideshow-content img{
-  width:1600px;
-  height:400px;
+  width:1800px;
+  height:500px;
 }
 
 @keyframes slide{
@@ -137,13 +137,13 @@ html{
     transform:translateX(0);
   }
   15%,30%{
-    transform:translateX(-1600px);
+    transform:translateX(-1800px);
   }
   35%,50%{
-    transform:translateX(-3200px);
+    transform:translateX(-3600px);
   }
   55%,70%{
-    transform:translateX(-4800px);
+    transform:translateX(-5400px);
   }
   90%{
     transform:translateX(0%);
@@ -197,9 +197,10 @@ html{
   flex-direction: column;
   background: white;
   height: auto;
-  padding:17px;
+  padding:25px;
   margin: 5px;
-  width: 265px;
+  width: 300px;
+  overflow: hidden;
 
 }
 .detail-link{
@@ -215,6 +216,7 @@ html{
 .product-img{
   width: 100%;
   height: auto;
+  
 }
 
 .product-brand{
@@ -370,7 +372,7 @@ input{
   font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
   display:block;
   border:1px solid #c4c2c2;
-  width:225px;
+  width:255px;
 
 }
 
@@ -385,7 +387,7 @@ input{
   font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
   display:block;
   border:1px solid #c4c2c2;
-  width:268px;
+  width:255px;
 }
 .description{
   padding: 15px 20px;
@@ -459,14 +461,12 @@ input{
 }
 .gohome{
   text-decoration: none;
-  color:black;
+  color:rgb(102, 102, 102);
   font-size: 15px;
-  text-decoration: underline;
 }
 
 .gohome:hover{
-  color:rgb(190, 188, 188);
-  transition: .2s;
+  text-decoration: underline;
   
 }
 
@@ -537,4 +537,75 @@ input{
 }
 .main{
   background-color: #f2f2f2;
+}
+
+/** Login Page **/
+
+.login-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.login-content{
+  width: 575px;
+  background: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:65px 55px 55px 65px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.login-content form input{
+  margin:15px auto 15px auto;
+  width:350px;
+  font-size: 17px;
+}
+.login-content form {
+  display: block;
+}
+.login-content form a{
+  text-decoration: none;
+  color:#336986;
+}
+
+.login-content form a:hover{
+  text-decoration: underline;
+}
+
+.login-content .submit{
+  margin:15px auto 15px auto;
+  width:350px;
+  font-size: 17px;
+  color:white;
+  background-color: #336986;
+}
+.login-content .submit:hover{
+  background-color:rgb(71, 94, 99);
+}
+.form-title{
+    display: block;
+    color: #555555;
+    text-align: center;
+}
+
+.login-container .gohome{
+  color:#336986;
+
+}
+
+.need-acc{
+  font-size:15px;
+  margin: 40px;
+}
+
+*{
+  box-sizing: border-box;
 }

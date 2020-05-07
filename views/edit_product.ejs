@@ -21,13 +21,14 @@
                     <input type="text" name="product_name" value="<%= product.title %>" required>
                 </div> 
                 <div class="form-input">
-                    <div class="label">Product Catagory</div>
+                   <div class="label">Product Catagory</div>
                     <select id="catagory" name="product_catagory" required>
                     <option value="" disabled selected>Please choose product catagory</option>        
                     <option value="computer">Computer</option>
-                    <option value="cell-phone">Cell Phones</option>
-                    <option value="headphones">Headphones</option>
-                    <option value="gaming">Gaming Accessories</option>
+                    <option value="phone">Phone</option>
+                    <option value="headphones">Headphone</option>
+                    <option value="gaming">Gaming Accessory</option>
+                    <option value="camera">Camera</option>
                     <option value="<%= product.catagory %>" selected> <%= product.catagory %></option>
                 </select>
                 </div>
@@ -60,7 +61,7 @@
         <input type="hidden" name="_csrf" value="<%=csrfToken %>">
         </form>
         <div class="goback">
-            <a class="gohome" href="/"> back to Home</a>
+            <a class="gohome" href="/"> Back To Home</a>
         </div>
     </div>
 </div>
