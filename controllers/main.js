@@ -29,3 +29,8 @@ exports.getProductDetail = (req,res,next)=>{
     ) 
     })
 }
+exports.getCart = (req,res,next)=>{  
+        res.render('cart',{
+            title: "My Cart",
+        })
+}

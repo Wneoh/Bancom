@@ -1,27 +1,4 @@
 <%- include('layouts/header'); -%>
-<div class="menu">
-  <a class="logo" href="/"><img  src="images/home/logo.png" alt=""></a>
-  <div class="menu-container">
-        <div class="menu-item-con" id="menu-profile" onclick="myFunction()">
-          <div class="menu-item">
-            <img class="profile-icon" src="images/icons/user.png" alt="">
-            <br><strong>Account</strong>
-          </div>
-        </div>
-        <div id="profileDropdown" class="profile-dropdown">
-          <a href="/login"><strong>Sign In</strong></a>
-          <a href="/profile"><strong>Profile Setting</strong></a>
-          <a href="/logout"><strong>Sign Out</strong></a>
-        </div>
-        <a class="menu-item-con" href="/addProduct">
-          <div class="menu-item" >
-            <img src="images/icons/product.png" alt=""><br><strong>Add Product</strong></div>
-        </a>
-        <a class="menu-item-con"href="/cart">
-          <div class="menu-item" ><img class="cart-icon" src="images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
-          </a>
-  </div>
-</div>
 <div id="slideshow-container">
   <ul id="slideshow-content">
     <% for( let i =0; i<slide_hero.length;i++){ %>
@@ -68,7 +45,7 @@
         <div class="product">
           <a class="detail-link" href="/pDetail?pid=<%=products[i]._id %>">
           <div class="brief-container" >
-          <img class ="product-img" src="<%= products[i].imageUrls %>" alt="">
+          <img class ="product-img" src="<%= products[i].imageUrl %>" alt="">
           </div>
           <p class="product-brand"><%= products[i].brand %></p> 
           <div class="brief-title">

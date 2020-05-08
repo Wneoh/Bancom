@@ -1,22 +1,31 @@
 const Product = require('../models/product');
 let Validator = require('validatorjs');
-const file = require('../middleware/fileUpload');
+const validFile= require('../middleware/fileUpload');
 var fs = require('fs');
 
 
 exports.postProduct =(req,res,next)=>{
-     upload = file.checkFile("product_image");
+        upload = validFile("product_image");
         upload(req, res, function (err) {
         console.log(req.file);
+        console.log(req.body);
+        pname =req.body.product_name;
+        purl="/images/products/"+req.file.filename;
+        pdescription=req.body.product_description;
+        pprice=req.body.product_price;
+        pbrand=req.body.product_brand.toUpperCase();
+        pcatagory=req.body.product_catagory;
+        pspecs=req.body.product_specs;
+        const product = new Product(pname,purl,pdescription,pprice,pbrand,pcatagory,pspecs);
         if(err){
         res.render('add_product',{
             title: 'Add Product',
             error:err,
+            product:product,
             csrfToken: req.csrfToken()
         })
         }else{
-            const product = new Product(req.body.product_name,"/images/products/"+req.file.filename,req.body.product_description,req.body.product_price,req.body.product_brand.toUpperCase() ,req.body.product_catagory);
-              console.log(product);
+          console.log(req.file);
               product
                 .save()
                 .then(result =>{
@@ -31,9 +40,11 @@ exports.postProduct =(req,res,next)=>{
 };
 
 exports.getAddProduct =(req,res,next)=>{
+  product = new Product('','','','','','','');
   res.render('add_product',{
       title: "Add Product",
       csrfToken: req.csrfToken(),
+      product:product,
       error: "",
       
   })
@@ -102,7 +113,8 @@ exports.getEditProduct =(req,res,next)=>{
             edit:true,
             error:err_message,
             product:product,
-            pid:pid
+            pid:pid,
+            csrfToken: req.csrfToken()
          })
         }
     product.save().then(

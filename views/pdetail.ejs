@@ -1,33 +1,42 @@
 <%- include('layouts/header'); -%>
-<div class="menu">
-    <a class="logo" href="/"><img  src="images/logo1.png" alt=""></a>
-    <div class="menu-container">
-            <a class="menu-item" href="/">Home</a>
-            <a class="menu-item" href="/login">Login</a>
-            <a class="menu-item" href="/addProduct">Add Product</a>
-    </div>
-</div>
 <body class="main2">
 <div class="detail-container">
     <div class="detail">
         <div class="detail-img">
-            <img src="<%= product.imageUrls %>" alt="">
+            <img src="<%= product.imageUrl %>" alt="">
         </div>
         <div class="detail-description">
             <p style="margin-top:0px; font-weight: bold;"><%= product.brand %></p>
-            <p><%= product.title %></p>
+            <p style="font-family: 'Lato', sans-serif;"><%= product.title %></p>
             <p style="margin-top:10px; font-weight: bold;">RM <%= product.price %></p>
-            <p style="margin-top:25px; font-weight: bold;">Description</p>
-            <div style="width:500px;">
-                <%- product.desp %>
-            </div>
-            <button type="button" class="addcart">Add To Cart</button>
-            <div class="goback">
-                <a class="gohome" href="/"> back to Home</a>
-            </div>
+            <form id="form-quantity"action="/cart" method="GET">
+            <select id="product-quantity" name="product_quantity" required>
+              <option value=1 selected>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5>5</option>
+          </select>
+            <button type="button" class="addcart"><strong>Add To Cart</strong></button>
+          </form>
         </div>
-        
     </div>
+    <div class="description-section">
+    <div class="detail-description-container">
+    <div class="description-tab">
+      <button class="tablinks" onclick="openTab(event, 'description')"><Strong>Description</Strong></button>
+      <button class="tablinks" onclick="openTab(event, 'spec')"><Strong>Specs</Strong></button>
+    </div>
+    <div class="tabcontent-con">
+    <div id="description" class="tabcontent">
+        <%- product.description %> 
+    </div>
+    <div id="spec" class="tabcontent">
+      <%- product.specs %> 
+    </div> 
+    </div>
+  </div>
+  </div>
     
 </div>
 </body>

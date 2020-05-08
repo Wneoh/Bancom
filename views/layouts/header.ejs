@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro&display=swap');
+    </style> 
     <script 
     src="https://code.jquery.com/jquery-3.5.0.js"
     integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
     crossorigin="anonymous"></script>
     <script src="javascripts/home.js"></script>
     <script src="javascripts/editor.js"></script>
+    <script src="javascripts/description_tab.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
     <script
     src="https://code.jquery.com/jquery-3.5.0.js"
@@ -18,4 +22,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/ui/trumbowyg.min.css">
 
 </head>
+<div class="menu">
+    <a class="logo" href="/"><img  src="images/home/logo.png" alt=""></a>
+    <div class="menu-container">
+      <a class="menu-item-con" href="/">
+        <div class="menu-item" >
+          <img src="images/icons/home.png" alt=""><br><strong>Home</strong></div>
+      </a>
+          <div class="menu-item-con" id="menu-profile" onclick="myFunction()">
+            <div class="menu-item">
+              <img class="profile-icon" src="images/icons/user.png" alt="">
+              <br><strong>Account</strong>
+            </div>
+          </div>
+          <div id="profileDropdown" class="profile-dropdown">
+            <a href="/login"><strong>Login/Register</strong></a>
+            <a href="/profile"><strong>Profile Setting</strong></a>
+            <a href="/logout"><strong>Sign Out</strong></a>
+          </div>
+          <a class="menu-item-con" href="/addProduct">
+            <div class="menu-item" >
+              <img src="images/icons/product.png" alt=""><br><strong>Add Product</strong></div>
+          </a>
+          <a class="menu-item-con"href="/cart">
+            <div class="menu-item" ><img class="cart-icon" src="images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
+            </a>
+    </div>
+  </div>
 

@@ -5,7 +5,8 @@ const validate = require('./validateInput');
 /*
 * Define storage and rule for uploading files
 */
-const checkFile = (file_attr) => { 
+
+module.exports = function(attr) {
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, 'public/images/products/')
@@ -19,6 +20,7 @@ const checkFile = (file_attr) => {
         var err_message="";
         const title = req.body.product_name;
         const imageUrl = "images/products/UploadedOn" + Date.now() + "fileOrigName" + file.originalname;
+        req.body.imageUrl = imageUrl;
         const price = req.body.product_price;
         const brand = req.body.product_brand;
         const description = req.body.product_description;
@@ -39,8 +41,8 @@ const checkFile = (file_attr) => {
             return
         }
     };
-    var upload = multer({ storage: storage , fileFilter: fileFilter}).single(file_attr);
+    var upload = multer({ storage: storage , fileFilter: fileFilter}).single(attr);
+    
     return upload;
-}
 
-exports.checkFile = checkFile;
+}   

@@ -1,0 +1,77 @@
+<%- include('layouts/header'); -%>
+<div class="maincart-container">
+    <div class="cart-container">
+        <h3>Shopping Cart</h3>
+        <div class="cart-detail">
+            <div class="cart-bar">
+                <div class="cart-bar-title">Item</div>
+                <div class="cart-bar-title">Description</div>
+                <div class="cart-bar-title">Price</div>
+                <div class="cart-bar-title">Quantity</div>
+                <div class="cart-bar-title">Sub Total</div>
+            </div>
+            <div class="cart-item">
+                <div class="img-holder"><img src="https://dummyimage.com/250/ffffff/000000" alt=""></div>
+                <div class="item">Lenovo Idea Pad 3</div>
+                <div class="item">52.00</div>
+                <div class="item">
+                    <div class="update"><select style="margin: 0px;" id="product-quantity" name="product_update"
+                            required>
+                            <option value=1 selected>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        </select>
+                        <button class="submit">update</button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="subtotal-con">$104.00 <button class="delete-submit">X</button></div>
+                </div>
+            </div>
+            <div class="cart-item">
+                <div class="img-holder"><img src="https://dummyimage.com/250/ffffff/000000" alt=""></div>
+                <div class="item">Lenovo Idea Pad 3</div>
+                <div class="item">52.00</div>
+                <div class="item">
+                    <div class="update"><select style="margin: 0px;" id="product-quantity" name="product_update"
+                            required>
+                            <option value=1 selected>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        </select>
+                        <button class="submit">update</button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="subtotal-con">$104.00 <button class="delete-submit">X</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="total-container">
+        <div class="total-content">
+            <div class="summary-con">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span class="summary-title"><strong>Sub Total</strong></span>
+                    <span class="summary-value">$104</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-title">Estimated Shipping</span>
+                    <span class="summary-value">$10</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-title">Sales tax</span>
+                    <span class="summary-value">$5</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-title"><strong>Total</strong></span>
+                    <span class="summary-value"><strong>$5000</strong></span>
+                </div>
+                <button type="submit" class="submit"> Check Out</button>
+            </div>
+        </div>
+    </div>
+    <%- include('layouts/footer'); -%>
