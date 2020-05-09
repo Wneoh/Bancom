@@ -1,0 +1,91 @@
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+      /* smartphones, iPhone, portrait 480x320 phones */
+
+    #dot-container{
+        display:none;
+    }
+
+    #slideshow-container{
+        display: none;
+    }
+    
+}
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width:641px)  and (max-device-width: 800px){ 
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    #slideshow-container{
+        height:325px;
+    }
+    #slideshow-content{
+        width:800px;
+    }
+    .filter-container{
+        padding-right:30px;
+    }
+
+    #slideshow-content img{
+        width:800px;
+        height:325px
+    }
+    .brief-container{
+        width:200px;
+        height:225px;
+    }
+    .product{
+        width:265px;
+    }
+    @keyframes slide{
+        10%{
+          transform:translateX(0);
+        }
+        15%,30%{
+          transform:translateX(-800px);
+        }
+        35%,50%{
+          transform:translateX(-1600px);
+        }
+        55%,70%{
+          transform:translateX(-2400px);
+        }
+        90%{
+          transform:translateX(0%);
+        }
+      }
+
+        .form-container{
+            width:auto;
+            margin:1% 1%;
+        }
+
+        .maincart-container{
+            flex-direction: column;
+        }
+
+        .detail-container{
+            width: auto;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .detail{
+            margin:30px 30px 0px 30px;
+        }
+        .detail-img{
+            padding: 15px 30px 40px 30px;
+        }
+        .detail-img img{
+            width:300px;
+        }
+        .description-section{
+            margin:30px 30px 0px 30px;
+        }
+
+
+}
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }

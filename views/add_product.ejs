@@ -5,24 +5,61 @@
         <img class="form-image" src="images/headset.jpg" alt="">
     </div> -->
     <div class="form-product">
-        <form id="form-add" action="/addProduct?_csrf=<%=csrfToken%>" method="POST" enctype="multipart/form-data">
+        <form id="form-add" action="/addProduct?_csrf=<%=csrfToken%>" class="form-loading" method="POST" enctype="multipart/form-data">
         <h2 class="form-title"><%= title %></h2>
         <span class="error"><%= error %></span>
         <div class="form-main">
             <div class="form-row">
                 <div class="form-input">
                     <div class="label">Product Name</div>
-                    <input type="text" name="product_name" value ="<%= product.title %>"required>
+                    <input type="text" name="product_name" value ="<%= product.name %>"required>
                     </div> 
                 <div class="form-input">
                     <div class="label">Product Catagory</div>
                     <select id="catagory" name="product_catagory" required>
-                    <option value="" disabled selected>Please choose product catagory</option>        
-                    <option value="computer">Computer</option>
-                    <option value="phone">Phone</option>
-                    <option value="headphones">Headphone</option>
-                    <option value="gaming">Gaming Accessory</option>
-                    <option value="camera">Camera</option>
+                    <% if(product.catagory =="computer"){ %>
+                        <option value="" disabled >Please choose product catagory</option>    
+                        <option value="computer" selected>Computer</option>
+                        <option value="phone">Phone</option>
+                        <option value="headphone">Headphone</option>
+                        <option value="gaming">Gaming Accessory</option>
+                        <option value="camera">Camera</option>
+                    <%}else if(product.catagory =="phone"){%> 
+                        <option value="" disabled >Please choose product catagory</option>    
+                        <option value="computer">Computer</option>
+                        <option value="phone" selected>Phone</option>
+                        <option value="headphone">Headphone</option>
+                        <option value="gaming">Gaming Accessory</option>
+                        <option value="camera">Camera</option>
+                    <% }else if(product.catagory =="headphones"){%>
+                        <option value="" disabled >Please choose product catagory</option>    
+                        <option value="computer">Computer</option>
+                        <option value="phone">Phone</option>
+                        <option value="headphone" selected>Headphone</option>
+                        <option value="gaming">Gaming Accessory</option>
+                        <option value="camera">Camera</option>
+                    <%}else if(product.catagory =="gaming"){%>
+                        <option value="" disabled >Please choose product catagory</option>    
+                        <option value="computer">Computer</option>
+                        <option value="phone">Phone</option>
+                        <option value="headphone">Headphone</option>
+                        <option value="gaming" selected>Gaming Accessory</option>
+                        <option value="camera">Camera</option>
+                    <%}else if(product.catagory =="camera"){%>
+                        <option value="" disabled >Please choose product catagory</option>    
+                        <option value="computer">Computer</option>
+                        <option value="phone">Phone</option>
+                        <option value="headphone">Headphone</option>
+                        <option value="gaming">Gaming Accessory</option>
+                        <option value="camera" selected>Camera</option>
+                    <%}else{%>    
+                        <option value="" selected disabled >Please choose product catagory</option>    
+                        <option value="computer">Computer</option>
+                        <option value="phone">Phone</option>
+                        <option value="headphone">Headphone</option>
+                        <option value="gaming">Gaming Accessory</option>
+                        <option value="camera">Camera</option>
+                    <%}%>
                 </select>
                 </div>
             </div>
@@ -33,8 +70,8 @@
                 </div> 
                 <div class="form-input">
                     <div class="label">Product Price</div>
-                    <span style="position: absolute; margin-left: 5px; margin-top: 15px;">$</span>
-                    <input type="text" name="product_price" value ="<%= product.price %>" required>
+                    <span style="position: absolute; margin-left: 6px; margin-top: 15px;">$</span>
+                    <input type="text" class="price-input" name="product_price" value ="<%= product.price %>" required>
                 </div> 
             </div>
             <div class="form-row description">
@@ -64,6 +101,7 @@
     </div>
     </div>
 </div>
+
 <!-- Import jQuery -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>

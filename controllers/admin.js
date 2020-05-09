@@ -1,22 +1,32 @@
 const Product = require('../models/product');
 let Validator = require('validatorjs');
 const validFile= require('../middleware/fileUpload');
-var fs = require('fs');
+const fileHelper = require('../util/fileHelper')
 
 
 exports.postProduct =(req,res,next)=>{
         upload = validFile("product_image");
         upload(req, res, function (err) {
-        console.log(req.file);
-        console.log(req.body);
+        if(req.file=== undefined || req.body === undefined){
+          purl ='';
+        }else{
+          purl='/images/products/'+req.file.filename;
+        }
         pname =req.body.product_name;
-        purl="/images/products/"+req.file.filename;
         pdescription=req.body.product_description;
         pprice=req.body.product_price;
-        pbrand=req.body.product_brand.toUpperCase();
+        pbrand=req.body.product_brand;
         pcatagory=req.body.product_catagory;
         pspecs=req.body.product_specs;
-        const product = new Product(pname,purl,pdescription,pprice,pbrand,pcatagory,pspecs);
+        const product = new Product({
+          name:pname,
+          imageUrl:purl,
+          description:pdescription,
+          brand:pbrand,
+          price:pprice,
+          catagory:pcatagory,
+          specs:pspecs,
+        });
         if(err){
         res.render('add_product',{
             title: 'Add Product',
@@ -25,7 +35,6 @@ exports.postProduct =(req,res,next)=>{
             csrfToken: req.csrfToken()
         })
         }else{
-          console.log(req.file);
               product
                 .save()
                 .then(result =>{
@@ -40,12 +49,12 @@ exports.postProduct =(req,res,next)=>{
 };
 
 exports.getAddProduct =(req,res,next)=>{
-  product = new Product('','','','','','','');
+  product = new Product(null,null,null,null,null,null);
   res.render('add_product',{
       title: "Add Product",
       csrfToken: req.csrfToken(),
-      product:product,
       error: "",
+      product:product
       
   })
 };
@@ -53,7 +62,7 @@ exports.getAddProduct =(req,res,next)=>{
 exports.getEditProduct =(req,res,next)=>{
     var pid = req.query.pid;
     console.log(pid);
-    Product.findbyId(pid).then(
+    Product.findById(pid).then(
         product=>{
             console.log(product);
             res.render('edit_product',{
@@ -72,13 +81,23 @@ exports.getEditProduct =(req,res,next)=>{
   exports.postEditProduct =(req,res,next)=>{
   var errormsg=[];
   var err_message='';
+  console.log(req);
         const pid = req.body.pid;
-        const title = req.body.product_name;
+        const name = req.body.product_name;
         const price = req.body.product_price;
-        const brand= req.body.product_brand;
+        const brand= req.body.product_brand.toUpperCase();
         const description = req.body.product_description;
         const catagory = req.body.product_catagory;
-        const product = new Product(title,req.body.edit_image,description,price,brand.toUpperCase(),catagory, pid);      
+        const specs=req.body.product_specs;
+        const product = new Product({
+          name:name,
+          description:description,
+          brand:brand,
+          price:price,
+          catagory:catagory,
+          specs:specs,
+        });
+        console.log(product);     
         let data = {
             'product_name':title.trim(),
             'product_brand': brand.trim(),
@@ -126,8 +145,13 @@ exports.getEditProduct =(req,res,next)=>{
         };
 
 
-  exports.postdeleteProduct =(req,res,next)=>{
-      const pid = req.body.pid;
-      Product.deleteById(pid);
+exports.postdeleteProduct =(req,res,next)=>{
+    const pid = req.body.pid; 
+    Product.findByIdAndRemove(pid).then((result)=>{
+      console.log("product deleted");
+      console.log(result);
+      fileHelper.deleteFile(result.imageUrl);
       res.redirect('/');
-  }
+    }).catch(err=>console.log(err));
+    
+}

@@ -2,7 +2,7 @@
 <div id="slideshow-container">
   <ul id="slideshow-content">
     <% for( let i =0; i<slide_hero.length;i++){ %>
-      <li><img src="<%= slide_hero[i]%>" alt=""></li>
+      <li><img id="slide-img" src="<%= slide_hero[i]%>" alt=""></li>
     <% }%>
   </ul>
 </div>
@@ -49,7 +49,7 @@
           </div>
           <p class="product-brand"><%= products[i].brand %></p> 
           <div class="brief-title">
-            <p class="product-title"><%= products[i].title %></p>
+            <p class="product-title"><%= products[i].name %></p>
           </div>
           <div class="brief-price">
             <p class="product-price">RM <%= products[i].price %></p> 
@@ -62,7 +62,7 @@
             </form>
             <form class="form-delete" action="/deleteProduct" method="POST">
             <button class="btn-delete" type="submit">Delete</button>
-            <input type="hidden" name="_csrf" id="csrf" value="<%=csrfToken %>">
+            <input type="hidden" name="_csrf" id="csrf" value="<%= csrfToken %>">
             <input type="hidden" name="pid" value ="<%=products[i]._id %>">
           </form>
           </div>

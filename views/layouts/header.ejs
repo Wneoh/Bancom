@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="shortcut icon" type="image/png" href="images/icons/favicon.png">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro&display=swap');
     </style> 
@@ -13,6 +14,7 @@
     crossorigin="anonymous"></script>
     <script src="javascripts/home.js"></script>
     <script src="javascripts/editor.js"></script>
+    <script src="javascripts/loading.js"></script>
     <script src="javascripts/description_tab.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
     <script
@@ -20,8 +22,15 @@
     integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/ui/trumbowyg.min.css">
+    <link rel="stylesheet" href="/stylesheets/media.css">
 
 </head>
+<div class="after-submit">
+  <div class="lds-ring" >
+      <div></div><div></div><div></div><div></div>
+  </div>
+  <!-- <p>Submiting your order! Thank you!</p> -->
+</div>
 <div class="menu">
     <a class="logo" href="/"><img  src="images/home/logo.png" alt=""></a>
     <div class="menu-container">
@@ -37,8 +46,10 @@
           </div>
           <div id="profileDropdown" class="profile-dropdown">
             <a href="/login"><strong>Login/Register</strong></a>
-            <a href="/profile"><strong>Profile Setting</strong></a>
-            <a href="/logout"><strong>Sign Out</strong></a>
+            <a href="/order"><strong>My Order</strong></a>
+            <form action="/logout" id="form-logout" method="POST">
+              <button type="submit">Sign Out</button>
+            </form>
           </div>
           <a class="menu-item-con" href="/addProduct">
             <div class="menu-item" >

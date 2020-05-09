@@ -26,6 +26,7 @@ $("#description").css("display","block");
     console.log(tablinks)
     $(tablinks[0]).addClass("active");
     $("#spec").css("display","none");
+    
 })
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
@@ -44,3 +45,4 @@ $("#description").css("display","block");
         $('#'+tabName).css("display","block");
         evt.currentTarget.className += " active";
       } 
+

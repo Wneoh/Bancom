@@ -10,68 +10,98 @@
                 <div class="cart-bar-title">Quantity</div>
                 <div class="cart-bar-title">Sub Total</div>
             </div>
-            <div class="cart-item">
-                <div class="img-holder"><img src="https://dummyimage.com/250/ffffff/000000" alt=""></div>
-                <div class="item">Lenovo Idea Pad 3</div>
-                <div class="item">52.00</div>
-                <div class="item">
-                    <div class="update"><select style="margin: 0px;" id="product-quantity" name="product_update"
-                            required>
-                            <option value=1 selected>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                        </select>
-                        <button class="submit">update</button>
+            <% if(products.length == 0){ %>
+                <div class="cart-item">
+                    <h4>Your Cart is empty now</h4>
+                </div>
+            <% }else{ %>
+                <% for (var i=0; i<products.length;i++){ %>
+                <div class="cart-item">
+                    <div class="img-holder"><img src="<%= products[i].productId.imageUrl %>" alt=""></div>
+                    <div class="item"><%= products[i].productId.name %></div>
+                    <div class="item"><%= products[i].productId.price %></div>
+                    <div class="item">
+                        <form action="/updateCart" method="POST" class="loading-form">
+                        <div class="update"><select style="margin: 0px;" id="product-quantity" name="quantity"
+                                required>
+                                <% if(products[i].quantity ==1){ %>
+                                    <option value=1 selected >1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                <%}else if(products[i].quantity ==2){%> 
+                                    <option value=1>1</option>
+                                    <option value=2 selected>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                <% }else if(products[i].quantity ==3){%>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3 selected>3</option>
+                                    <option value=4>4</option>
+                                <%}else if(products[i].quantity ==4){%>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4 selected>4</option>
+                                <%}else{%>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                <%}%>
+                                </select>
+                            <input type="hidden" name="pId" value='<%= products[i]._id %>'>
+                            <button  type = "submit" class="submit">update</button>
+                        </form>
+                        </div>
                     </div>
+                    <div class="item">
+                        <div class="subtotal-con">
+                            <div class="subtotal-content"><strong>
+                            RM <%= (products[i].quantity)*(products[i].productId.price).toFixed() %> </strong>
+                        </div>
+                        <form action="/deleteCart" method="POST" class="loading-form"><input type="hidden" name="pId" value='<%= products[i]._id %>'><button type="submit" class="delete-submit"  class="submit"><strong>X</strong></button></form></div>
+                        </div>
                 </div>
-                <div class="item">
-                    <div class="subtotal-con">$104.00 <button class="delete-submit">X</button></div>
-                </div>
-            </div>
-            <div class="cart-item">
-                <div class="img-holder"><img src="https://dummyimage.com/250/ffffff/000000" alt=""></div>
-                <div class="item">Lenovo Idea Pad 3</div>
-                <div class="item">52.00</div>
-                <div class="item">
-                    <div class="update"><select style="margin: 0px;" id="product-quantity" name="product_update"
-                            required>
-                            <option value=1 selected>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                        </select>
-                        <button class="submit">update</button>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="subtotal-con">$104.00 <button class="delete-submit">X</button></div>
-                </div>
-            </div>
+                <% } %>
+            <% } %>
         </div>
     </div>
     <div class="total-container">
         <div class="total-content">
             <div class="summary-con">
                 <h3>Order Summary</h3>
+                <form action="/postOrder" method="POST" class="loading-form">
                 <div class="summary-row">
                     <span class="summary-title"><strong>Sub Total</strong></span>
                     <span class="summary-value">$104</span>
                 </div>
                 <div class="summary-row">
                     <span class="summary-title">Estimated Shipping</span>
-                    <span class="summary-value">$10</span>
+                    <span class="summary-value">$10</span>001
                 </div>
                 <div class="summary-row">
                     <span class="summary-title">Sales tax</span>
                     <span class="summary-value">$5</span>
                 </div>
+                <div class="line"></div>
                 <div class="summary-row">
                     <span class="summary-title"><strong>Total</strong></span>
                     <span class="summary-value"><strong>$5000</strong></span>
                 </div>
-                <button type="submit" class="submit"> Check Out</button>
+                <% if(products.length == 0){ %>
+                    <input type="hidden" name="totalPrice" value="">
+                    <button type="button" id="submit" disabled="true" class="submit"> Check Out</button>
+                <%}else{%>
+                    <input type="hidden" name="totalPrice" value="">
+                    <button type="submit" id="submit" class="submit"> Check Out</button>
+                <%}%>
+
+                </form>
             </div>
         </div>
     </div>
+</div>
+
     <%- include('layouts/footer'); -%>

@@ -37,20 +37,16 @@ exports.postSignup=(req,res,next)=>{
                 err_msg += ' ' + err[i] + '\n';
             }
       }
-      User.checkEmail(email).then(result =>{
-            if(!result){
-                  console.log("Email has been taken");
-                  err_msg += "Email has been taken";
-                  return false;
-            }else{
-                  console.log("email not taken")
-                  return true
+
+      User.findOne(email).then(function(res,user){
+            if(user){
+                  console.log("user has been taken");
+                  return res.redirect("/signup");
             }
+      }).catch(err=>{
+            console.log(err);
       })
-      console.log(req.validationError)
-      if(req.validationError!==''){
-            err_msg+="Email has been taken";
-      }
+      
       if(err_msg!=""){
             res.render('auth/SignUp',{
                   title:"Sign Up",
@@ -80,10 +76,16 @@ exports.getSignup=(req,res,next)=>{
 exports.postLogin=(req,res,next)=>{  
       var err_msg="";
       var err = [];
-      const name = req.body.user_name;
       const email = req.body.user_email;
       const pw = req.body.user_pw;
-      User.findUser(name,email).then(result=>{
-            console.log(result);
-      })
+      User.findOne({email:email}).then(user=>{
+            if(!user){
+                  return res.redirec('/login');
+            }
+      });
+}
+
+exports.postLogOut=(req,res,next)=>{  
+      req.session.destroy();
+      res.redirect("auth/login")
 }

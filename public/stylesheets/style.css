@@ -8,7 +8,7 @@
 }
 .menu-container{
   display: flex;
-  width: 245px;
+  width: 275px;
 }
 .makeWhite{
   background-color: #e5e5e5;;
@@ -25,7 +25,25 @@
   filter:invert(60%) sepia(10%) saturate(6800%) hue-rotate(156deg) brightness(66%) contrast(50%) !important;
 }
 
+#form-logout button{
+  color: #0D3842 !important;
+  padding: 20px 25px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border: none;
+  font-weight: bold;
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
 
+#form-logout button:hover{
+  background-color:#cac9c9 !important;
+  transition: .2s;
+  cursor: pointer;
+  color:#244657 !important;
+  
+}
 .profile-dropdown {
   display: none;
   background-color: #e5e5e5;
@@ -33,7 +51,7 @@
   height: auto;
   z-index: 1;
   position: absolute;
-  right: 122.5px;
+  right: 137.5px;
   top: 62px;
   transition: opacity 2s;
   animation: ease-in-out;
@@ -192,6 +210,9 @@ html{
   flex:6;
 }
 
+.price-input{
+  padding: 15px 19px;
+}
 .product{
   display: flex;
   flex-direction: column;
@@ -232,7 +253,8 @@ html{
 }
 .brief-title{
   font-size:15px;
-  max-height: 60px;
+  max-height: 50px;
+  min-height: 50px;
 }
 
 .brief-price{
@@ -247,6 +269,7 @@ html{
 
 .btn-admin{
   display: flex;
+  margin-top: auto;
   justify-content: space-evenly;
 }
 
@@ -411,7 +434,7 @@ input{
 }
 
 .submit{
-  padding: 15px 20px;
+  padding: 18px 20px;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -421,10 +444,13 @@ input{
   font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
   display:block;
   border:1px solid #c4c2c2;
-  width: 150px;
+  width: 200px;
   text-align: center;
   margin: auto;
   cursor: pointer;
+  background-color: #244657;
+  color: white;
+  font-weight: bold;
 }
 
 .btn-image{
@@ -442,6 +468,7 @@ input{
   text-align: center;
   margin: 25px auto auto auto;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .submit:active {
@@ -450,10 +477,12 @@ input{
      -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
           box-shadow: inset 0px 0px 5px #c1c1c1;
    outline: none;
+   color:#244657;
 }
 .submit:hover{
   background-color:  #e5e5e5;
   transition: .2s;
+  color:#244657;
 }
 .gohome{
   text-decoration: none;
@@ -508,7 +537,7 @@ input{
   flex:2;
 }
 .detail-img img{
-  width: 500px;
+  width: 400px;
   height:auto;
 }
 #product-quantity{
@@ -551,7 +580,8 @@ input{
 }
 
 .addcart:hover{
-  background-color: #2d5d75;
+  background-color:#e5e5e5;
+  color:#244657;
 }
 .addcart:active {
   transition: .2s;
@@ -606,6 +636,7 @@ input{
 }
 
 .tabcontent{
+  font-size: 17px;
   font-family: 'Source Sans Pro', sans-serif;
 }
 /** Login Page **/
@@ -695,7 +726,7 @@ input{
 
 .cart-bar{
   display:flex;
-  background-color: #244657;
+  background-color: #64686a;
   border-radius: 4px;
   padding: 12px 0 12px 0;
 }
@@ -712,6 +743,7 @@ input{
   display: flex;
   border-top:1px solid #acacac;
   border-bottom:1px solid #acacac;
+  padding-top: 15px;
   
 }
 .img-holder{
@@ -741,10 +773,12 @@ input{
   display: flex;
 }
 .update .submit{
-  width: 80px;
+  width: 90px;
+  padding: 16px;
 }
 .subtotal-con{
   display: flex;
+  justify-content: space-between;
 }
 .subtotal{
   display:flex;
@@ -764,14 +798,16 @@ input{
   text-align: center;
   margin: auto;
   cursor: pointer;
+  background-color: #244657;
+  color: white;
 }
 
 .delete-submit:hover{
-
-
+  color:#244657;
 }
 .delete-submit:active {
   background: #e5e5e5;
+  color:#244657;
   -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
      -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
           box-shadow: inset 0px 0px 5px #c1c1c1;
@@ -787,6 +823,9 @@ input{
   flex:1;
   margin:20px 30px 0px 10px;
 }
+.total-container form{
+  height: 100%;
+}
 .total-content{
   background-color: white;
   width: 350px;
@@ -799,7 +838,7 @@ input{
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
   background-color: white;
   border-radius:10px;
-  padding:15px;
+  padding:15px 30px 15px 30px;
 }
 .summary-con{
   flex:1;
@@ -819,23 +858,24 @@ input{
 }
 
 .summary-con button{
-  width:265px;
+  width:100%;
   height:55px;
   color:white;
   font-weight: bold;
   background-color: #244657;
+  font-size: 16px;
 
 }
 .summary-con button:active {
-  background: #4794bb;
+
   -webkit-box-shadow: inset 0px 0px 5px #17313f;
      -moz-box-shadow: inset 0px 0px 5px #122c3a;
           box-shadow: inset 0px 0px 5px #122c3a;
    outline: none;
 }
 .summary-con button:hover{
-  background-color:  #307496;
-  transition: .2s;
+  background-color:#e5e5e5;
+  color:#244657;
 }
 
 .summary-title{
@@ -844,6 +884,94 @@ input{
 .summary-value{
   margin-top:15px;
 }
+
+/* order */
+.order-container{
+  margin: 30px 175px 55px 175px;
+  padding: 30px;
+  flex:3;
+  border:1px solid #acacac;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  background-color: white;
+  border-radius:10px;
+  display: flex;
+flex-direction: column;
+}
+
+.order-container .cart-bar{
+  
+  flex:1
+}
+
+.order-container .item{
+  margin: 0px;
+  flex:1.5;
+}
+
+.order-container .img-holder{
+  padding:0px;
+}
+
+.order-container .img-holder img{
+  margin: 10px;
+}
+
+/* loading */
+
+.after-submit{
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+  text-align: center;
+  width: 200px;
+  height: 100px;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, 0);
+}
+.after-submit p{
+  width:200px;
+  height:200px;
+}
+.lds-ring {
+  display: inline-block;
+  width: 80px;
+  position: relative;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid rgb(10, 9, 9);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: rgb(32, 29, 29) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 *{
   box-sizing: border-box;
 }

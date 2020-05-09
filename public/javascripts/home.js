@@ -1,5 +1,7 @@
 $( document ).ready(function() {
     var dots = $('.dot');
+    var img = $("#slide-img").width();
+    console.log(img);
     $(dots[0]).click(function(){
         $('#slideshow-content').css({'transform': 'translateX(0)','animation':'none'});
         setTimeout(function(){
@@ -8,19 +10,19 @@ $( document ).ready(function() {
         }, 12000);
     })
     $(dots[1]).click(function(){
-        $('#slideshow-content').css({'transform': 'translateX(-1800px)','animation':'none'});
+        $('#slideshow-content').css({'transform': 'translateX('+(-img)+'px)','animation':'none'});
         setTimeout(function(){
             $('#slideshow-content').css({'animation':'slide 25s infinite'})
         }, 12000);
     })
     $(dots[2]).click(function(){
-        $('#slideshow-content').css({'transform': 'translateX(-3600px)','animation':'none'});
+        $('#slideshow-content').css({'transform': 'translateX('+(-img*2)+'px)','animation':'none'});
         setTimeout(function(){
             $('#slideshow-content').css({'animation':'slide 25s infinite'})
         }, 12000);
     })
     $(dots[3]).click(function(){
-        $('#slideshow-content').css({'transform': 'translateX(-5400px)','animation':'none'});
+        $('#slideshow-content').css({'transform': 'translateX('+(-img*3)+'px)','animation':'none'});
         setTimeout(function(){
             $('#slideshow-content').css({'animation':'slide 25s infinite'})
         }, 12000);
@@ -50,9 +52,3 @@ $( document ).ready(function() {
       });
       
     })
- 
-
-
-
-
-

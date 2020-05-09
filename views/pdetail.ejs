@@ -7,9 +7,9 @@
         </div>
         <div class="detail-description">
             <p style="margin-top:0px; font-weight: bold;"><%= product.brand %></p>
-            <p style="font-family: 'Lato', sans-serif;"><%= product.title %></p>
+            <p style="font-family: 'Lato', sans-serif;"><%= product.name %></p>
             <p style="margin-top:10px; font-weight: bold;">RM <%= product.price %></p>
-            <form id="form-quantity"action="/cart" method="GET">
+            <form id="form-quantity" class="form-loading" action="/cart" method="POST">
             <select id="product-quantity" name="product_quantity" required>
               <option value=1 selected>1</option>
               <option value=2>2</option>
@@ -17,7 +17,8 @@
               <option value=4>4</option>
               <option value=5>5</option>
           </select>
-            <button type="button" class="addcart"><strong>Add To Cart</strong></button>
+          <input type="hidden" name="pId" value="<%= product._id %>">
+            <button type="submit" class="submit"><strong>Add To Cart</strong></button>
           </form>
         </div>
     </div>
@@ -39,5 +40,6 @@
   </div>
     
 </div>
+
 </body>
 <%- include('layouts/footer'); -%>
