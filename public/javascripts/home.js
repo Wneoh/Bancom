@@ -2,6 +2,9 @@ $( document ).ready(function() {
     var dots = $('.dot');
     var img = $("#slide-img").width();
     console.log(img);
+    function scrollToTop() { 
+        $(window).scrollTop(0); 
+    } 
     $(dots[0]).click(function(){
         $('#slideshow-content').css({'transform': 'translateX(0)','animation':'none'});
         setTimeout(function(){

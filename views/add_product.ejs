@@ -7,7 +7,14 @@
     <div class="form-product">
         <form id="form-add" action="/addProduct?_csrf=<%=csrfToken%>" class="form-loading" method="POST" enctype="multipart/form-data">
         <h2 class="form-title"><%= title %></h2>
-        <span class="error"><%= error %></span>
+        <% if(error) {%>
+            <script> 
+                scrollToTop(); 
+            </script> 
+            <div class="error">
+                <p><strong>Error<br></strong><%= error %></p>
+            </div>
+        <%}%>
         <div class="form-main">
             <div class="form-row">
                 <div class="form-input">
@@ -88,8 +95,8 @@
             </div>  
             <div class="form-row">
                 <div class="form-input">
-                    <div class="label">Product Image</div>
-                    <input type="file" for="imageUpload" name="product_image" required>
+                    <div class="label">Product Images(Max 3 images)</div>
+                    <input type="file" for="imageUpload" name="product_images" accept="image/*" multiple required>
                 </div>        
             </div>
             </div>

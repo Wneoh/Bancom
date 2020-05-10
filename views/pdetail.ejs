@@ -3,7 +3,20 @@
 <div class="detail-container">
     <div class="detail">
         <div class="detail-img">
-            <img src="<%= product.imageUrl %>" alt="">
+          <div class="container-img">
+            <img src="https://dummyimage.com/250/000/fff" alt="">
+          </div>
+          <div class="row">
+            <div class="column">
+              <img class="sub-img" src="https://dummyimage.com/250/000/fff" alt="Nature" onclick="myFunction(this);">
+            </div>
+            <div class="column">
+              <img class="sub-img" src="https://dummyimage.com/250/000/fff" alt="Snow" onclick="myFunction(this);">
+            </div>
+            <div class="column">
+              <img class="sub-img" src="https://dummyimage.com/250/000/fff" alt="Mountains" onclick="myFunction(this);">
+            </div>
+          </div>
         </div>
         <div class="detail-description">
             <p style="margin-top:0px; font-weight: bold;"><%= product.brand %></p>

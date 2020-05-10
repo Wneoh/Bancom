@@ -35,7 +35,6 @@
           <li>
             <a href="">See All</a>
           </li>
-          
         </ul>
       </input>
       </div>
@@ -45,7 +44,7 @@
         <div class="product">
           <a class="detail-link" href="/pDetail?pid=<%=products[i]._id %>">
           <div class="brief-container" >
-          <img class ="product-img" src="<%= products[i].imageUrl %>" alt="">
+          <img class ="product-img" src="data:image/jpeg;base64,<%= products[i].image[0].data %>" alt="">
           </div>
           <p class="product-brand"><%= products[i].brand %></p> 
           <div class="brief-title">

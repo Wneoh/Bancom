@@ -22,7 +22,6 @@ exports.getProductDetail = (req,res,next)=>{
     var pid = req.query.pid;
     Product.findById(pid).then(
         product=>{
-            console.log(product);
             res.render('pdetail',{
                 title: "Product Detail",
                 edit:false,

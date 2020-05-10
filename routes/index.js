@@ -1,12 +1,17 @@
 var express = require('express');
-var router = express.Router();
+var validator = require('../middleware/validate')
 var maincontroller = require('../controllers/main')
 var admincontroller = require('../controllers/admin')
 var authcontroller = require('../controllers/auth/user')
 var csrf = require('csurf')
 var bodyParser = require('body-parser');
+var multerFileUpload = require('../middleware/fileUpload')
 var csrfProtection = csrf({ cookie: true })
-var parseForm = bodyParser.urlencoded({ extended: false }) 
+var parseForm = bodyParser.urlencoded({ extended: true }) 
+var router = express.Router();
+
+
+const multerUploadMiddleware = multerFileUpload.upload("product_images");
 
 
 /* GET home page. */
@@ -17,7 +22,7 @@ router.get('/editProduct',csrfProtection,admincontroller.getEditProduct);
 
 router.post('/deleteProduct',parseForm,csrfProtection,admincontroller.postdeleteProduct);
 router.post('/editProduct',parseForm,csrfProtection,admincontroller.postEditProduct);
-router.post('/addProduct',parseForm,csrfProtection,admincontroller.postProduct);
+router.post('/addProduct',parseForm,csrfProtection,multerUploadMiddleware,validator.addProduct,admincontroller.postProduct);
 
 /* Cart */
 
