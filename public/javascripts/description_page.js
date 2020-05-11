@@ -23,7 +23,6 @@ $(document).ready(function(){
 
 $("#description").css("display","block");
     var tablinks =$(".tablinks"); 
-    console.log(tablinks)
     $(tablinks[0]).addClass("active");
     $("#spec").css("display","none");
     
@@ -46,3 +45,14 @@ $("#description").css("display","block");
         evt.currentTarget.className += " active";
       } 
 
+      function showSubImg(imgs) {
+        if($(".column").hasClass( "sub-select" )){
+          $(".column").removeClass("sub-select");
+        }
+        $(imgs).parent().addClass("sub-select");
+        //$(imgs).parent().css("border", "rgb(124, 124, 124)");
+        var expandImg = $("#main-img"); // get main img
+        var sub_img = ($(imgs).attr("src")); //get clicked img src
+        //$(imgs).parent().css("border", "1px solid #244657");
+        $(".main-img").attr('src',sub_img); // change the main img src to the clicked img src        
+      }

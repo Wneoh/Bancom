@@ -4,7 +4,11 @@
   justify-content: flex-end;
   font-size:12px;
   background-color:#244657;;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
   padding-left: 10px;
+  height:65px;
 }
 .menu-container{
   display: flex;
@@ -52,7 +56,7 @@
   z-index: 1;
   position: absolute;
   right: 137.5px;
-  top: 62px;
+  top: 65px;
   transition: opacity 2s;
   animation: ease-in-out;
   font-size:13px;
@@ -103,15 +107,17 @@
   margin-right: auto;
 }
 .logo img{
-  margin-right: auto;
-  height: 60px;
-  width: 80px;
+    margin-right: auto;
+    height: 100px;
+    width: auto;
+    position: fixed;
+    top: -20px;
 }
 
 .main-container{
   display: flex;
-  padding-top: 15px;
-  margin: 0 1em 0 1em;
+  background-color: rgb(247, 247, 247);
+  padding: 15px 40px 15px 40px;
 }
 body{
   margin:0;
@@ -139,6 +145,7 @@ html{
   position:relative;
   transition: 2s;
   animation: slide 25s infinite;
+  padding-top:65px;
 }
 
 #slideshow-content li{
@@ -219,8 +226,8 @@ html{
   background: white;
   height: auto;
   padding:25px;
-  margin: 5px;
-  width: 300px;
+  margin: 4px;
+  width: 290px;
   overflow: hidden;
 
 }
@@ -385,11 +392,11 @@ form-title{
 
 input{
   padding: 15px 15px;
-  border-radius: 5px;
+  /* border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
-  -ms-border-radius: 5px;
+  -ms-border-radius: 5px; */
   font-size: 14px;
   font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
   display:block;
@@ -400,11 +407,11 @@ input{
 
 #catagory{
   padding: 15px 15px;
-  border-radius: 5px;
+  /* border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
-  -ms-border-radius: 5px;
+  -ms-border-radius: 5px; */
   font-size: 14px;
   font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
   display:block;
@@ -413,10 +420,10 @@ input{
 }
 .description{
   border-radius: 5px;
-  -moz-border-radius: 5px;
+  /* -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
-  -ms-border-radius: 5px;
+  -ms-border-radius: 5px; */
   font-size: 14px;
   font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
   display:block;
@@ -425,9 +432,15 @@ input{
 .description-con{
   margin: auto;
 }
-
+.preview{
+  width: 150px;
+  padding: 10px;
+}
 #editor-container{
   height:185px;
+}
+.trumbowyg-box{
+  border:1px solid #c4c2c2 !important;
 }
 
 .submit{
@@ -518,6 +531,7 @@ input{
 .detail{
   display: flex;
   background-color: white;
+  height: 400px;
 }
 .detail-description{
   flex:1;
@@ -528,20 +542,33 @@ input{
   flex-direction: column;
 }
 .column {
-  border: 1px solid white;
+  border: 1px solid rgb(176, 173, 173);
+  margin: 5px;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  
+}
+.sub-select{
+  border: 1px solid rgb(0, 64, 94);
 }
 .column img {
-  opacity: 0.8;
+  opacity: 1;
   cursor: pointer;
+}
+.main-img{
+  width:300px;
+  transition: .5s;
+  max-height:400px;
 }
 
 .sub-img{
-  width: 145px;
+  width: 70px;
+  margin: auto;
   height: auto;
+  padding: 5px;
 }
-.column img:hover {
-  opacity: 1;
-}
+
 .container-img {
   position: relative;
   display: flex;
@@ -550,8 +577,10 @@ input{
 
 .row{
   display: flex;
-  padding-top: 10px;
+  padding-top: 30px;
+  flex-direction: column;
   margin: auto;
+  padding: 30px;
 }
 .row:after {
   content: "";
@@ -768,7 +797,6 @@ input{
 }
 .cart-item{
   display: flex;
-  border-top:1px solid #acacac;
   border-bottom:1px solid #acacac;
   padding-top: 15px;
   
@@ -776,6 +804,7 @@ input{
 .img-holder{
   flex:1;
   padding-left:15px;
+  margin-bottom: 20px;
 }
 
 .img-holder img{
@@ -927,18 +956,22 @@ input{
 flex-direction: column;
 }
 
-.order-container .cart-bar{
-  
+.order-container .cart-bar-title{
   flex:1
+}
+.error-container .cart-item{
+  font-size: 16px;;
 }
 
 .order-container .item{
   margin: 0px;
-  flex:1.5;
+  flex:1;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .order-container .img-holder{
   padding:0px;
+  padding-left: 15px;
 }
 
 .order-container .img-holder img{
@@ -963,6 +996,11 @@ flex-direction: column;
   width:200px;
   height:200px;
 }
+
+.disabled{
+  cursor: not-allowed;
+}
+
 .lds-ring {
   display: inline-block;
   width: 80px;
@@ -998,7 +1036,24 @@ flex-direction: column;
     transform: rotate(360deg);
   }
 }
+/* error page */
 
+.error {
+	display: flex;
+	justify-content: center;
+  text-align: center;
+  color:white;
+  background-color: #17313f;
+  white-space: pre-line;
+}
+
+.error-container{
+font-family: 'Lato', sans-serif;
+}
+
+.error-container img{
+  width: 100px;
+}
 *{
   box-sizing: border-box;
 }

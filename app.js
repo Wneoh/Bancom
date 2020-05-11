@@ -44,18 +44,6 @@ app.use(function(req, res, next) {
 });
 
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error',{
-    title:"Unexpected error."
-  });
-});
 
 mongoose.connect("mongodb+srv://wneoh:wneoh@bananacom0-glvvj.mongodb.net/bancom?retryWrites=true&w=majority", { 
   useUnifiedTopology: true,
@@ -80,5 +68,23 @@ mongoose.connect("mongodb+srv://wneoh:wneoh@bananacom0-glvvj.mongodb.net/bancom?
 .catch(err =>{
   console.log(err);
 })
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  if(err.status ==404){
+    res.status(404).render("error",{
+      title: "Sorry...",
+      message:"We could not found the page you looking for.",
+    });
+  }else{
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error',{
+      title:"Unexpected error."
+    });
+  }
+});
 
 module.exports =app;

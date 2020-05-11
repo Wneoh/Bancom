@@ -6,7 +6,7 @@
     <% }%>
   </ul>
 </div>
-<div id ="dot-container"style="text-align:center; padding-top:15px">
+<div id ="dot-container"style="text-align:center; padding: 15px 0 15px 0;">
   <span class='dot'></span>
   <span class='dot'></span>
   <span class='dot'></span>
@@ -18,22 +18,22 @@
         <span>Electronics</span>
         <ul class="filter-list">
           <li>
-            <a href="">Camera</a>
+            <a href="/?catagory=camera">Camera</a>
           </li>
           <li>
-            <a href="">Cell Phone</a>
+            <a href="/?catagory=phone">Cell Phone</a>
           </li>
           <li>
-            <a href="">Computer</a>
+            <a href="/?catagory=computer">Computer</a>
           </li>
           <li>
-            <a href="">Headphone</a>
+            <a href="/?catagory=headphone">Headphone</a>
           </li>
           <li>
-            <a href="">Gaming Accessories</a>
+            <a href="/?catagory=gaming">Gaming Accessories</a>
           </li>
           <li>
-            <a href="">See All</a>
+            <a id="all" href="/">See All</a>
           </li>
         </ul>
       </input>
@@ -44,7 +44,7 @@
         <div class="product">
           <a class="detail-link" href="/pDetail?pid=<%=products[i]._id %>">
           <div class="brief-container" >
-          <img class ="product-img" src="data:image/jpeg;base64,<%= products[i].image[0].data %>" alt="">
+          <img class ="product-img" src="data:<%= products[i].image[0].contentType %>;base64,<%= products[i].image[0].data %>" alt="products[i].image[0].name">
           </div>
           <p class="product-brand"><%= products[i].brand %></p> 
           <div class="brief-title">
@@ -70,4 +70,10 @@
       <% } %>
     </div>
   </div>
+  <% if(products){ %>
+    <script>
+      window.scrollTo(0,500)
+    </script>
+  <% } %>
+  
 <%- include('layouts/footer'); -%>

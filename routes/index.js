@@ -21,15 +21,15 @@ router.get('/addProduct',csrfProtection, admincontroller.getAddProduct);
 router.get('/editProduct',csrfProtection,admincontroller.getEditProduct);
 
 router.post('/deleteProduct',parseForm,csrfProtection,admincontroller.postdeleteProduct);
-router.post('/editProduct',parseForm,csrfProtection,admincontroller.postEditProduct);
+router.post('/editProduct',parseForm,csrfProtection,validator.editProduct,admincontroller.postEditProduct);
 router.post('/addProduct',parseForm,csrfProtection,multerUploadMiddleware,validator.addProduct,admincontroller.postProduct);
 
 /* Cart */
 
-router.get('/cart', maincontroller.getCart);
-router.post('/cart', maincontroller.postCart);
-router.post('/deleteCart',maincontroller.postDeleteCart);
-router.post('/updateCart',maincontroller.postUpdateCart);
+router.get('/cart', csrfProtection,maincontroller.getCart);
+router.post('/cart',parseForm,csrfProtection, maincontroller.postCart);
+router.post('/deleteCart',parseForm,csrfProtection,maincontroller.postDeleteCart);
+router.post('/updateCart',parseForm,csrfProtection,maincontroller.postUpdateCart);
 
 
 router.get('/order', maincontroller.getOrder);
@@ -39,8 +39,8 @@ router.post('/postOrder',maincontroller.postOrder);
 /* Auth */
 
 
-//router.get('/login',csrfProtection, authcontroller.getLogin);
-//router.get('/signup',csrfProtection, authcontroller.getSignup);
+router.get('/login',csrfProtection, authcontroller.getLogin);
+router.get('/signup',csrfProtection, authcontroller.getSignup);
 
 
 //router.post('/signup',parseForm,csrfProtection, authcontroller.postSignup)

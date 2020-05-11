@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
     products:[{
         productData: {type: Object, required:true},
-        quantity: {type:Number, required:true}
+        quantity: {type:Number, required:true},
+        subTotal:{type:Number,required:true}
 
     }],
     user:{
@@ -18,6 +19,14 @@ const orderSchema = new Schema({
             required: true,
             ref:'User'
         }
+    },
+    total:{
+        type:Number,
+        required:true
+    },
+    orderDate:{
+        type:String,
+        require:true
     }
 
 });

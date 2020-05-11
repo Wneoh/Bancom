@@ -1,48 +1,46 @@
 <%- include('layouts/header'); -%>
 <div class="maincart-container">
     <div class="order-container">
-        <h3>Shopping Cart</h3>
+        <h3>Orders</h3>
+        <% if(orders.length == 0){ %>
+            <div class="cart-item">
+                <h4>You do not have any orders.</h4>
+            </div>
+        <% }else{ %>
+        <% for(var i =0;i<orders.length;i++){ %>
         <div class="cart-detail">
             <div class="cart-bar">
-                <div class="cart-bar-title">Order Id : 1548-521-01</div>
-                <div class="cart-bar-title" style="flex:3.3">Date : 01/08/2015</div>
+                <div class="cart-bar-title">Order Id : <%= orders[i].orderId %></div>
+                <div class="cart-bar-title" >Date &emsp;&emsp;&emsp;&emsp;: <%=date[i] %></div>
+                <div class="cart-bar-title" >Total &emsp;&emsp;&ensp;&ensp;&emsp;&emsp;: <strong>RM <%=orders[i].totalPrice %></strong></div>
             </div>
+            <% for(var j =0;j<orders[i].product.length;j++){ %>
             <div class="cart-item">
-                <div class="img-holder"><img src="https://dummyimage.com/250/000000/fff" alt=""></div>
-                <div class="item">
-                    <h4>Details</h4>
-                    <div class="order-detail">
-                    <p>product name</p><p>product price</p><p>product description</p></div>
+                <div class="img-holder"><img src="data:<%= orders[i].product[j].productData.image[0].contentType %>;base64,<%= orders[i].product[j].productData.image[0].data %>" alt="<%= orders[i].product[j].productData.image[0].name %>"></div>
+                    <div class="item">
+                        <p style="margin-top: 0px;"><strong>Details</strong></p>
+                        <div class="order-detail">
+                            <p>Brand &emsp;&emsp;&ensp;&ensp;&ensp;: <%= orders[i].product[j].productData.brand %></p>
+                            <p>Name &emsp;&emsp;&ensp;&ensp;&ensp;: <%= orders[i].product[j].productData.name %></p>
+                            <p>Quantity &emsp;&ensp;&ensp;&ensp;: <%= orders[i].product[j].quantity %></p>
+                        </div>
                     </div>
                 <div class="item">
-                    Products have been shipped
-                    <div class="subtotal-con">
-                        <div class="subtotal-content">
-                    </div>
-                    </div>
-            </div>              
-        </div>
-    </div>
-    <div class="cart-detail">
-        <div class="cart-bar">
-            <div class="cart-bar-title">Order Id : 1548-521-01</div>
-            <div class="cart-bar-title" style="flex:3.3">Date : 01/08/2015</div>
-        </div>
-        <div class="cart-item">
-            <div class="img-holder"><img src="https://dummyimage.com/250/000000/fff" alt=""></div>
-            <div class="item">
-                <h4>Details</h4>
-                <div class="order-detail">
-                <p>product name</p><p>product price</p><p>product description</p></div>
+                    <p style="margin-top: 0px;"><strong>Costs</strong></p>
+                    <p>Subtotal &emsp;&emsp;&ensp;&ensp;&ensp;:   RM <%= orders[i].product[j].subTotal%></p>
+                    <p>Sales tax &emsp;&emsp;&ensp;&ensp;: RM <%=tax%></p>
+                    <p>Shipping Cost &emsp;: RM <%= shipping %></p>
+                        <div class="subtotal-con">
+                            <div class="subtotal-content">
+                        </div>
                 </div>
-            <div class="item">
-                Products have been shipped
-                <div class="subtotal-con">
-                    <div class="subtotal-content">
-                </div>
-                </div>
-        </div>
-                    
+            </div> 
+                
+              
+            </div>    
+            <% } %>   
+    <% } %>   
+    <% } %>  
     </div>
-    </div>
+</div>    
 <%- include('layouts/footer'); -%>

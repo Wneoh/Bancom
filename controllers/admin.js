@@ -51,19 +51,16 @@ exports.getAddProduct = (req, res, next) => {
     csrfToken: req.csrfToken(),
     error: "",
     product: product
-
   })
 };
 
 exports.getEditProduct = (req, res, next) => {
-  var pid = req.query.pid;
-  console.log(pid);
-  Product.findById(pid).then(
+  var pId = req.query.pid;
+  Product.findById(pId).then(
     product => {
       res.render('edit_product', {
         title: "Edit Product",
-        pid: pid,
-        edit: true,
+        pId: pId,
         error: "",
         product: product,
         csrfToken: req.csrfToken()
@@ -74,77 +71,53 @@ exports.getEditProduct = (req, res, next) => {
 }
 
 exports.postEditProduct = (req, res, next) => {
-  var errormsg = [];
-  var err_message = '';
-  const pid = req.body.pid;
+  const pId = req.body.pId;
   const name = req.body.product_name;
   const price = req.body.product_price;
   const brand = req.body.product_brand.toUpperCase();
   const description = req.body.product_description;
   const catagory = req.body.product_catagory;
   const specs = req.body.product_specs;
+  
   const product = new Product({
     name: name,
+    image: "",
     description: description,
     brand: brand,
     price: price,
     catagory: catagory,
     specs: specs,
   });
-  console.log(product);
-  let data = {
-    'product_name': title.trim(),
-    'product_brand': brand.trim(),
-    'product_price': price.trim(),
-    'description': description.trim(),
-    'catagory': catagory.trim()
-  };
-  let rules = {
-    'product_name': 'min:1|max:40|required',
-    'product_brand': 'min:1|max:40|required',
-    'product_price': 'numeric|required|present|min:1|max:10000',
-    'description': 'min:10|max:2000|required',
-    'catagory': 'string|required'
-  };
-  //console.log(data);
-  let validation = new Validator(data, rules);
-  validation.passes(); // true
-  validation.fails(); // false
-  errormsg.push(validation.errors.first('product_name'));
-  errormsg.push(validation.errors.first('product_price'));
-  errormsg.push(validation.errors.first('product_brand'));
-  errormsg.push(validation.errors.first('description'));
-  errormsg.push(validation.errors.first('catagory'));
-  for (var i = 0; i < errormsg.length; i++) {
-    if (errormsg[i] != false) {
-      err_message += ' ' + errormsg[i] + '\n';
-    }
-  }
-  if (err_message.length !== 0) {
-    res.render('edit_product', {
-      title: "Edit Product",
-      edit: true,
-      error: err_message,
-      product: product,
-      pid: pid,
-      csrfToken: req.csrfToken()
+
+  Product.findOneAndUpdate({_id: pId.toString()}, {$set: 
+      { 
+        name:name, 
+        description: description, 
+        brand:brand,
+        price:price,
+        catagory:catagory,
+        specs:specs
+      }
+      }, {new: true,useFindAndModify: false}, (err, doc) => {
+      if (err) {
+          res.render('edit_product', {
+            title: "Edit Product",
+            pId: pId,
+            edit: true,
+            error: err,
+            product: product,
+            csrfToken: req.csrfToken()
+          })
+      }else{
+        res.redirect('/');
+      }
     })
-  }
-  product.save().then(
-    result => {
-      console.log(result)
-      console.log("updated product");
-      res.redirect('/');
-    }).catch(err => console.log(err))
 };
 
 
 exports.postdeleteProduct = (req, res, next) => {
   const pid = req.body.pid;
   Product.findByIdAndRemove(pid).then((result) => {
-    console.log("product deleted");
-    console.log(result);
-    fileHelper.deleteFile(result.imageUrl);
     res.redirect('/');
   }).catch(err => console.log(err));
 

@@ -38,7 +38,7 @@
                         <option value="headphone">Headphone</option>
                         <option value="gaming">Gaming Accessory</option>
                         <option value="camera">Camera</option>
-                    <% }else if(product.catagory =="headphones"){%>
+                    <% }else if(product.catagory =="headphone"){%>
                         <option value="" disabled >Please choose product catagory</option>    
                         <option value="computer">Computer</option>
                         <option value="phone">Phone</option>
@@ -96,7 +96,12 @@
             <div class="form-row">
                 <div class="form-input">
                     <div class="label">Product Images(Max 3 images)</div>
-                    <input type="file" for="imageUpload" name="product_images" accept="image/*" multiple required>
+                    <input type="file" for="imageUpload" id="image_upload" name="product_images" accept="image/*" onchange="loadFile(this)" multiple required>
+                    <div class="preview-container">
+                        <img id="preview" class="preview"  src="" alt="">
+                        <img id="preview1" class="preview" src="" alt="">
+                        <img id="preview2" class="preview" src="" alt="">
+                    </div>
                 </div>        
             </div>
             </div>
@@ -108,11 +113,29 @@
     </div>
     </div>
 </div>
+<script>
+    var loadFile = function(img) {
+        if(img.files.length>3){
+            alert("Please select only 3 images or less");
+            $("#image_upload").val('');
+            $('#preview').attr('src','');
+            $('#preview1').attr('src','');
+            $('#preview2').attr('src','');
+            return;
+        }
+        $('#preview').attr('src','');
+        $('#preview1').attr('src','');
+        $('#preview2').attr('src','');
+        $('#preview').attr('src',window.URL.createObjectURL(img.files[0]));
+        $('#preview1').attr('src',window.URL.createObjectURL(img.files[1])); 
+        $('#preview2').attr('src',window.URL.createObjectURL(img.files[2]));
+    }
+</script>
 
 <!-- Import jQuery -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-
+<script>$(".menu").css("position","relative");</script>
 <!-- Import Trumbowyg -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/trumbowyg.min.js">
 </script>

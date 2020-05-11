@@ -82,7 +82,7 @@ userSchema.methods.updateToCart = function(pId,quantity){
 }
 
 userSchema.methods.clearCart = function(){
-    this.cart = {itme:[]};
+    this.cart = {item:[]};
     return this.save();
 }
 module.exports = mongoose.model('User',userSchema);

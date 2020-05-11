@@ -1,7 +1,6 @@
 $( document ).ready(function() {
     var dots = $('.dot');
     var img = $("#slide-img").width();
-    console.log(img);
     function scrollToTop() { 
         $(window).scrollTop(0); 
     } 
@@ -37,6 +36,7 @@ $( document ).ready(function() {
         }else{
             e.preventDefault();
         }
+    
     }) 
     function myFunction() {
         $("#menu-profile").toggleClass("makeWhite");
