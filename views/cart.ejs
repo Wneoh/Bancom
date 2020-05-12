@@ -21,7 +21,7 @@
                         <div class="img-holder"><img src="data:<%= products[i].productId.image[0].contentType %>;base64,<%= products[i].productId.image[0].data %>" alt="<%=products[i].productId.image[0].name%>"></div>
                     <% }%>
                     <div class="item"><%= products[i].productId.name %></div>
-                    <div class="item">RM <%= products[i].productId.price %></div>
+                    <div class="item">RM <%= products[i].productId.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></div>
                     <div class="item">
                         <form action="/updateCart" method="POST" class="loading-form">
                         <div class="update"><select style="margin: 0px;" id="product-quantity" name="quantity"
@@ -62,7 +62,7 @@
                     <div class="item">
                         <div class="subtotal-con">
                             <div class="subtotal-content"><strong>
-                            RM <%= (products[i].quantity)*(products[i].productId.price).toFixed() %> </strong>
+                            RM <%= ((products[i].quantity)*(products[i].productId.price)).toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %> </strong>
                         </div>
                         
                         <form action="/deleteCart" method="POST" class="loading-form"><input type="hidden" name="_csrf" value="<%=csrfToken %>"><input type="hidden" name="pId" value='<%= products[i]._id %>'><button type="submit" class="delete-submit"  class="submit"><strong>X</strong></button></form></div>
@@ -79,27 +79,27 @@
                 <form action="/postOrder" method="POST" class="loading-form">
                 <div class="summary-row">
                     <span class="summary-title"><strong>Sub Total</strong></span>
-                    <span class="summary-value">RM <%= totalSub %></span>
+                    <span class="summary-value">RM &emsp;&emsp;<%= totalSub.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></span>
                 </div>
                 <% if(products.length == 0){ %>
                     <hr class="line"></hr>
                     <div class="summary-row">
                         <span class="summary-title"><strong>Total</strong></span>
-                        <span class="summary-value"><strong>RM 0</strong></span>
+                        <span class="summary-value"><strong>RM 0.00</strong></span>
                     </div>
                 <%}else{%>
                     <div class="summary-row">
                         <span class="summary-title">Estimated Shipping</span>
-                        <span class="summary-value">RM <%= shipping %></span>
+                        <span class="summary-value">RM &emsp;&emsp;&emsp;&emsp;&ensp;<%= shipping.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-title">Sales tax</span>
-                        <span class="summary-value">RM <%= tax %></span>
+                        <span class="summary-value">RM &emsp;&emsp;&emsp;&emsp;&ensp;<%= tax.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></span>
                     </div>
                     <div class="line"></div>
                 <div class="summary-row">
                     <span class="summary-title"><strong>Total</strong></span>
-                    <span class="summary-value"><strong>RM <%=totalPrice%></strong></span>
+                    <span class="summary-value"><strong>RM &emsp;&emsp;<%= totalPrice.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")%></strong></span>
                 </div>
                 <%}%>
                 <% if(products.length == 0){ %>

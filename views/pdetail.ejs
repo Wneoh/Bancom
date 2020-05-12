@@ -18,7 +18,7 @@
         <div class="detail-description">
             <p style="margin:0px; font-weight: bold; color:#244657;"><%= product.brand %></p>
             <p style="font-family: 'Lato', sans-serif; font-size:20px;"><%= product.name %></p>
-            <p style="margin-top:10px; font-weight: bold;">RM <%= product.price %></p>
+            <p style="margin-top:10px; font-weight: bold;">RM <%= product.price.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
             <form id="form-quantity" class="form-loading" action="/cart" method="POST">
             <!-- <select id="product-quantity" name="product_quantity" required>
               <option value=1 selected>1</option>

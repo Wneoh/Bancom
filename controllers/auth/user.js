@@ -1,66 +1,47 @@
 const User =  require('../../models/user');
-let Validator = require('validatorjs');
-
+const bcrypt = require('bcryptjs');
 
 /* GET Login Page. */
 exports.getLogin=(req,res,next)=>{    
       res.render('auth/login',{
       title:"Login",
-      csrfToken: req.csrfToken()
+      csrfToken: req.csrfToken(),
+      error:'',
+      old_email:''
       })   
 }
 
 exports.postSignup=(req,res,next)=>{  
-      var err_msg="";
-      var err = [];
       const name = req.body.user_name;
       const email = req.body.user_email;
-      const pw = req.body.user_password;
-      let data = {
-            'user_name': name.trim(),
-            'user_email': email.trim(),
-            'user_password': pw.trim()
-      };
-      let rules = {
-            'user_name': 'min:1|max:40|required',
-            'user_email': 'min:1|max:40|required',
-            'user_password': 'min:1|max:40|required|confirmed'
-      }
-      let validation = new Validator(data, rules);
-      //validation.passes(); // true
-      validation.fails(); // false
-      err.push(validation.errors.first('user_name'));
-      err.push(validation.errors.first('user_email'));
-      err.push(validation.errors.first('user_pw'));
-      for (var i = 0; i < err.length; i++) {
-            if (err[i] != false) {
-                err_msg += ' ' + err[i] + '\n';
-            }
-      }
-
-      User.findOne(email).then(function(res,user){
+      const password = req.body.user_password;
+      const confirmPassword = req.body.user_confirmPassword;
+      User.findOne({email:email}).then(user=>{
             if(user){
-                  console.log("user has been taken");
-                  return res.redirect("/signup");
+                  return res.render('auth/signup',{
+                        title:"Sign Up",
+                        old_username:name,
+                        old_email:"",
+                        error:"Error : Email has been taken",
+                        csrfToken: req.csrfToken()
+                  })
+            }else{
+                  return bcrypt.hash(password,12).then(hashedPassword =>{
+                        const user = new User({
+                              name:name,
+                              email:email,
+                              password:hashedPassword,
+                              cart:{item:[]}
+                        });
+                        return user.save();
+                  })
             }
-      }).catch(err=>{
-            console.log(err);
+      }).then(result =>{
+            res.redirect("/login");
       })
-      
-      if(err_msg!=""){
-            res.render('auth/SignUp',{
-                  title:"Sign Up",
-                  old_name: name,
-                  old_email: email,
-                  csrfToken: req.csrfToken(), 
-                  error:err_msg
-
-            })
-            return;
-      }
-      const user = new User(name,email,pw);
-      user.save();
-      res.redirect("/login");
+      .catch(err=>{
+            //console.log(err);
+      })
 }
 
 exports.getSignup=(req,res,next)=>{    
@@ -68,24 +49,46 @@ exports.getSignup=(req,res,next)=>{
       title:"Sign Up",
       csrfToken: req.csrfToken(),
       old_email:"",
-      old_name:"",
+      old_username:"",
       error:""
       })   
 }
 
 exports.postLogin=(req,res,next)=>{  
-      var err_msg="";
-      var err = [];
       const email = req.body.user_email;
-      const pw = req.body.user_pw;
+      const password = req.body.user_password;
       User.findOne({email:email}).then(user=>{
             if(!user){
-                  return res.redirec('/login');
+                  return res.render('auth/login',{
+                        title:"Login",
+                        old_email:email,
+                        error:"Invalid password or email.",
+                        csrfToken: req.csrfToken()
+                  })
+            }else{
+                 bcrypt.compare(password, user.password).then(passwordMatch=>{
+                  if(passwordMatch){
+                        req.session.isLoggedIn = true;
+                        req.session.user =user
+                        return req.session.save(result =>{
+                              res.redirect('/');
+                        })
+                  }
+                 }).catch(err=>{
+                  return res.render('auth/login',{
+                        title:"Login",
+                        old_email:email,
+                        error:"Invalid password or email.",
+                        csrfToken: req.csrfToken()
+                  })  
+                 }); 
             }
       });
 }
 
 exports.postLogOut=(req,res,next)=>{  
-      req.session.destroy();
-      res.redirect("auth/login")
-}
+      req.session.destroy( err => {
+            console.log(err);
+            res.redirect("/");
+      });
+};

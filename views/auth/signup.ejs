@@ -9,10 +9,10 @@
             <div class="form-con">
             <span class="error"><%= error %></span>
             <form action="/signup" class="signup-form" method="POST">
-                <input type="text" name="user_name" id="user_firstname" placeholder="First Name" value ="<%= old_name %>"required>
+                <input type="text" name="user_name" id="user_name" placeholder="Username" value ="<%= old_username %>"required>
                 <input type="email" name="user_email" id="user_email" placeholder="Email" value ="<%= old_email %>" required>
                 <input type="password" name="user_password" id="user_password" placeholder="Password" required>
-                <input type="password" name="user_password_confirmation" id="confirm_user_pw" placeholder="Confirm Password" required>
+                <input type="password" name="user_confirmPassword" id="confirm_user_pw" placeholder="Confirm Password" required>
                 <button class="submit" type="submit">Sign Me Up!</button>
                 <input type="hidden" name="_csrf" value="<%=csrfToken %>">
                 <div class="need-acc">

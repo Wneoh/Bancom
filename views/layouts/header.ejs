@@ -29,7 +29,6 @@
   <div class="lds-ring" >
       <div></div><div></div><div></div><div></div>
   </div>
-  <!-- <p>Submiting your order! Thank you!</p> -->
 </div>
 <div class="menu">
     <a class="logo" href="/"><img  src="images/home/logo.png" alt=""></a>
@@ -48,6 +47,7 @@
             <a href="/login"><strong>Login/Register</strong></a>
             <a href="/order"><strong>My Order</strong></a>
             <form action="/logout" id="form-logout" method="POST">
+              <input type="hidden" name="_csrf" value="<%=csrfToken %>">
               <button type="submit">Sign Out</button>
             </form>
           </div>

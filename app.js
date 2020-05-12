@@ -8,11 +8,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-
+const MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
 
-// setup route middlewares
-
+const MONGODB_URI ='mongodb+srv://wneoh:wneoh@bananacom0-glvvj.mongodb.net/bancom'
+const store = new MongoDBStore({
+  uri:MONGODB_URI,
+  collection: 'sessions'
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,19 +25,25 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser())
+app.use(session({
+  secret:'wneoh secret at Bancom',
+  resave:false,
+  saveUninitialized:false,
+  store:store,
+}));
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => console.log(err));
+});
 
-
-app.use((req,res,next)=>{
-  User.findById("5eb5f577da4ab53de48fece4").then(function(user,err){
-    if(user){
-    req.user = user;
-    }else{
-      console.log(err);
-    }
-    next();
-  }).catch(err=>console.log(err))
-})
-
+// setup route middlewares
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 
@@ -43,26 +52,12 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
-
-mongoose.connect("mongodb+srv://wneoh:wneoh@bananacom0-glvvj.mongodb.net/bancom?retryWrites=true&w=majority", { 
+mongoose.connect(MONGODB_URI,{ 
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true 
 })
 .then(result =>{
-  User.findOne().then(user=>{
-    if(!user){
-      const user = new User({
-        name:"wneoh",
-        email:"wneoh@test.com",
-        cart:{
-          items:[]
-        }
-      });
-      user.save();
-    }
-  })
   app.listen(3000);
 })
 .catch(err =>{

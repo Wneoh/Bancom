@@ -4,7 +4,7 @@
   justify-content: flex-end;
   font-size:12px;
   background-color:#244657;;
-  position: fixed;
+  position: relative;
   z-index: 1;
   width: 100%;
   padding-left: 10px;
@@ -1038,7 +1038,7 @@ flex-direction: column;
 }
 /* error page */
 
-.error {
+.error-page {
 	display: flex;
 	justify-content: center;
   text-align: center;

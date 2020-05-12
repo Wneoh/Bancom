@@ -51,7 +51,7 @@
             <p class="product-title"><%= products[i].name %></p>
           </div>
           <div class="brief-price">
-            <p class="product-price">RM <%= products[i].price %></p> 
+            <p class="product-price">RM <%= products[i].price.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p> 
           </div>
           </a>
           <div class="btn-admin">
@@ -75,5 +75,6 @@
       window.scrollTo(0,500)
     </script>
   <% } %>
+  <script> $(".menu").css("position","fixed");</script>
   
 <%- include('layouts/footer'); -%>

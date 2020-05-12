@@ -12,7 +12,7 @@
             <div class="cart-bar">
                 <div class="cart-bar-title">Order Id : <%= orders[i].orderId %></div>
                 <div class="cart-bar-title" >Date &emsp;&emsp;&emsp;&emsp;: <%=date[i] %></div>
-                <div class="cart-bar-title" >Total &emsp;&emsp;&ensp;&ensp;&emsp;&emsp;: <strong>RM <%=orders[i].totalPrice %></strong></div>
+                <div class="cart-bar-title" >Total &emsp;&emsp;&ensp;&ensp;&emsp;&emsp;: <strong>RM <%=orders[i].totalPrice.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></strong></div>
             </div>
             <% for(var j =0;j<orders[i].product.length;j++){ %>
             <div class="cart-item">
@@ -27,9 +27,9 @@
                     </div>
                 <div class="item">
                     <p style="margin-top: 0px;"><strong>Costs</strong></p>
-                    <p>Subtotal &emsp;&emsp;&ensp;&ensp;&ensp;:   RM <%= orders[i].product[j].subTotal%></p>
-                    <p>Sales tax &emsp;&emsp;&ensp;&ensp;: RM <%=tax%></p>
-                    <p>Shipping Cost &emsp;: RM <%= shipping %></p>
+                    <p>Subtotal &emsp;&emsp;&ensp;&ensp;&ensp;:   RM <%= orders[i].product[j].subTotal.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
+                    <p>Sales tax &emsp;&emsp;&ensp;&ensp;: RM <%=tax.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
+                    <p>Shipping Cost &emsp;: RM <%= shipping.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
                         <div class="subtotal-con">
                             <div class="subtotal-content">
                         </div>
