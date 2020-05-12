@@ -12,11 +12,11 @@
     src="https://code.jquery.com/jquery-3.5.0.js"
     integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
     crossorigin="anonymous"></script>
-    <script src="javascripts/home.js"></script>
-    <script src="javascripts/editor.js"></script>
-    <script src="javascripts/loading.js"></script>
-    <script src="javascripts/description_page.js"></script>
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="/javascripts/home.js"></script>
+    <script src="/javascripts/editor.js"></script>
+    <script src="/javascripts/loading.js"></script>
+    <script src="/javascripts/description_page.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <script
     src="https://code.jquery.com/jquery-3.5.0.js"
     integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
@@ -31,33 +31,68 @@
   </div>
 </div>
 <div class="menu">
-    <a class="logo" href="/"><img  src="images/home/logo.png" alt=""></a>
+    <a class="logo" href="/"><img  src="/images/home/logo.png" alt=""></a>
+    <% if(role =="admin"){ %>
     <div class="menu-container">
       <a class="menu-item-con" href="/">
         <div class="menu-item" >
-          <img src="images/icons/home.png" alt=""><br><strong>Home</strong></div>
+          <img src="/images/icons/home.png" alt=""><br><strong>Home</strong></div>
       </a>
           <div class="menu-item-con" id="menu-profile" onclick="myFunction()">
             <div class="menu-item">
-              <img class="profile-icon" src="images/icons/user.png" alt="">
-              <br><strong>Account</strong>
+              <img class="profile-icon" src="/images/icons/user.png" alt="">
+              <br><strong><%= user.name%></strong>
             </div>
           </div>
           <div id="profileDropdown" class="profile-dropdown">
-            <a href="/login"><strong>Login/Register</strong></a>
             <a href="/order"><strong>My Order</strong></a>
+            <% if(loggedIn){ %>
             <form action="/logout" id="form-logout" method="POST">
               <input type="hidden" name="_csrf" value="<%=csrfToken %>">
               <button type="submit">Sign Out</button>
             </form>
+            <% } %>
           </div>
           <a class="menu-item-con" href="/addProduct">
             <div class="menu-item" >
-              <img src="images/icons/product.png" alt=""><br><strong>Add Product</strong></div>
+              <img src="/images/icons/product.png" alt=""><br><strong>Add Product</strong></div>
           </a>
           <a class="menu-item-con"href="/cart">
-            <div class="menu-item" ><img class="cart-icon" src="images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
+            <div class="menu-item" ><img class="cart-icon" src="/images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
             </a>
     </div>
+    <% }else{%>      
+      <div class="menu-container-login">
+        <a class="menu-item-con" href="/">
+          <div class="menu-item" >
+            <img src="/images/icons/home.png" alt=""><br><strong>Home</strong></div>
+        </a>
+            <div class="menu-item-con" id="menu-profile" onclick="myFunction()">
+              <div class="menu-item">
+                <img class="profile-icon" src="/images/icons/user.png" alt="">
+                <% if(loggedIn){ %>
+                  <br><strong><%= user.name%></strong>
+                <%}else{%>
+                <br><strong>Account</strong>
+                <%}%>
+              </div>
+            </div>
+            <div id="profileDropdown" class="profile-dropdown">
+              <% if(!loggedIn){ %>
+              <a href="/login"><strong>Login/Register</strong></a>
+              <%}%>
+              <a href="/order"><strong>My Order</strong></a>
+              <% if(loggedIn){ %>
+              <form action="/logout" id="form-logout" method="POST">
+                <input type="hidden" name="_csrf" value="<%=csrfToken %>">
+                <button type="submit">Sign Out</button>
+              </form>
+              <% } %>
+            </div>
+            <a class="menu-item-con"href="/cart">
+              <div class="menu-item" ><img class="cart-icon" src="/images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
+              </a>
+      </div>
+      <% } %>
   </div>
 

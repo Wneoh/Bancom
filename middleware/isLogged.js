@@ -5,4 +5,12 @@ exports.checkAuth = function(req, res, next) {
     } else {
       next();
     }
+}
+
+exports.checkAdmin = function(req, res, next) {
+  if (req.session.user.role!=="admin") {
+    res.redirect('/');
+  } else {
+    next();
   }
+}

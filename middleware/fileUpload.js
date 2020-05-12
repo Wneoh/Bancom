@@ -29,7 +29,10 @@ function makeMulterUploadMiddleware(multerUploadFunction) {
                           title: 'Add Product',
                           error: err_msg,
                           product:product,
-                          csrfToken: req.csrfToken()
+                          csrfToken: req.csrfToken(),
+                          role:req.session.role,
+                          loggedIn: req.session.loggedIn,
+                          user: req.session.user
                         })
                 )
             }
@@ -41,7 +44,10 @@ function makeMulterUploadMiddleware(multerUploadFunction) {
                           title: 'Add Product',
                           error: err_msg,
                           product:product,
-                          csrfToken: req.csrfToken()
+                          csrfToken: req.csrfToken(),
+                          role:req.session.role,
+                          loggedIn: req.session.loggedIn,
+                          user: req.session.user
                         })
                 )
             }

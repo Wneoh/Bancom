@@ -16,7 +16,6 @@ exports.addProduct =[
     var files = req.files;       
     if (!errorValidation.isEmpty()) { // is there is error 
       errorValidation = errorValidation.array();
-      console.log("here");
       filesArr = [];
       Object.keys(files).map(function (key, index) { // map files object into array
         filesArr.push(files[index]);
@@ -48,7 +47,9 @@ exports.addProduct =[
             title: 'Add Product',
             error: err_msg,
             product:product,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn
           })
         );
     }
@@ -70,7 +71,6 @@ exports.editProduct =[
     var files = req.files;       
     if (!errorValidation.isEmpty()) { // is there is error 
       errorValidation = errorValidation.array();
-      console.log("here");
       //filesArr = [];
       //Object.keys(files).map(function (key, index) { // map files object into array
       //  filesArr.push(files[index]);
@@ -104,7 +104,10 @@ exports.editProduct =[
             error: err_msg,
             product:product,
             pId:pId,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user
           })
         );
     }
@@ -130,7 +133,10 @@ exports.loggedIn =[
             title: 'Login',
             error: err_msg,
             old_email:user_email,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user
           })
         );
     }
@@ -139,7 +145,7 @@ exports.loggedIn =[
 ]
 
 exports.signUp =[
-  body('user_name').isLength({min:6 , max:15}).withMessage('Username must be at least 6 chars and not exceed 15 chars').notEmpty().withMessage('User name is required.').trim(),
+  body('user_name').isLength({min:3 , max:10}).withMessage('Username must be at least 3 chars and not exceed 10 chars').notEmpty().withMessage('User name is required.').trim(),
   body('user_email').isEmail().withMessage('Please enter a valid email').notEmpty().withMessage('Email is required.').trim(),
   body('user_password').isLength({min:6}).withMessage('Password must contain at least 6 chars').isLength({max:20}).withMessage('Password must not exceed 20 chars').notEmpty().withMessage('Password is required.'),
   body('user_confirmPassword').isLength({min:6}).withMessage('Password must contain at least 6 chars').isLength({max:20}).withMessage('Password must not exceed 20 chars').notEmpty().withMessage('Confirm Password is required.'),
@@ -168,7 +174,9 @@ exports.signUp =[
             error: err_msg,
             old_email:user_email,
             old_username:user_name,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            loggedIn: req.session.loggedIn,
+            user: req.session.user
           })
         );
     }

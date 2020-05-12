@@ -1,0 +1,26 @@
+<%- include('../layouts/header'); -%>
+<body class="main" style="background-color: #eeeff0;">
+    <div class="login-container">
+        <div class="login-content" style="padding:45px 55px 45px 55px">
+            <div class="form-title">
+                <img src="images/logo3.png" alt="">
+                <h3 style="font-size: 25px;">Welcome!</h3>
+            </div>
+            <div class="form-con">
+            <span class="error"><%= error %></span>
+            <form action="/newpassword" class="signup-form" method="POST">
+                <input type="password" name="user_password" id="user_password" placeholder="New Password" value ="" required>
+                <input type="hidden" name="_csrf" value="<%=csrfToken %>">
+                <input type="hidden" name="passwordToken" value="<%=passwordToken%>">
+                <input type="hidden" name="userId" value="<%= userId %>">
+                <button class="submit" type="submit">Update Password</button>
+            </form>
+            <!-- <div class="goback">
+                <a class="gohome" href="/"> Back To Home</a>
+            </div> -->
+            </div>
+        </div>
+    </div>
+    <script>$(".menu").css("position","relative");</script>
+</body>
+<%- include('../layouts/footer'); -%>

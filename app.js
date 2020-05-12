@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
 const User = require('./models/user');
+const flash = require('connect-flash');
 const MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
 
@@ -21,6 +22,7 @@ const store = new MongoDBStore({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(flash());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,9 +40,11 @@ app.use((req, res, next) => {
   User.findById(req.session.user._id)
     .then(user => {
       req.user = user;
+      req.session.role = user.role;
       next();
     })
-    .catch(err => console.log(err));
+    .catch(err => 
+      console.log(err));
 });
 
 // setup route middlewares

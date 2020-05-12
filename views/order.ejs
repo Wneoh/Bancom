@@ -11,7 +11,7 @@
         <div class="cart-detail">
             <div class="cart-bar">
                 <div class="cart-bar-title">Order Id : <%= orders[i].orderId %></div>
-                <div class="cart-bar-title" >Date &emsp;&emsp;&emsp;&emsp;: <%=date[i] %></div>
+                <div class="cart-bar-title" >Date &ensp;&ensp;&ensp;&ensp;: <%=date[i] %></div>
                 <div class="cart-bar-title" >Total &emsp;&emsp;&ensp;&ensp;&emsp;&emsp;: <strong>RM <%=orders[i].totalPrice.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></strong></div>
             </div>
             <% for(var j =0;j<orders[i].product.length;j++){ %>
@@ -20,9 +20,9 @@
                     <div class="item">
                         <p style="margin-top: 0px;"><strong>Details</strong></p>
                         <div class="order-detail">
-                            <p>Brand &emsp;&emsp;&ensp;&ensp;&ensp;: <%= orders[i].product[j].productData.brand %></p>
-                            <p>Name &emsp;&emsp;&ensp;&ensp;&ensp;: <%= orders[i].product[j].productData.name %></p>
-                            <p>Quantity &emsp;&ensp;&ensp;&ensp;: <%= orders[i].product[j].quantity %></p>
+                            <p>Brand &ensp;&ensp;&ensp;: <%= orders[i].product[j].productData.brand %></p>
+                            <p>Name &ensp;&ensp;&ensp;: <%= orders[i].product[j].productData.name %></p>
+                            <p>Quantity &ensp;: <%= orders[i].product[j].quantity %></p>
                         </div>
                     </div>
                 <div class="item">

@@ -14,6 +14,18 @@
   display: flex;
   width: 275px;
 }
+.menu-container-login{
+  display: flex;
+  width: 200px;
+}
+.menu-container-login .profile-dropdown{
+  right: 66.5px;
+}
+
+.menu-container-login a:hover{
+  background-color:rgb(71, 94, 99);
+  transition: .2s;
+}
 .makeWhite{
   background-color: #e5e5e5;;
   transition: .1s;
@@ -959,6 +971,9 @@ flex-direction: column;
 .order-container .cart-bar-title{
   flex:1
 }
+.order-container .cart-bar-title:nth-child(3){
+  flex:0.8
+}
 .error-container .cart-item{
   font-size: 16px;;
 }
@@ -967,6 +982,10 @@ flex-direction: column;
   margin: 0px;
   flex:1;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.order-container .item:nth-child(3){
+  flex:0.8;
 }
 
 .order-container .img-holder{

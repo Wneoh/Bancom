@@ -13,6 +13,9 @@ exports.getIndex =(req,res,next)=>{
                 slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
                 products:docs,
                 csrfToken: req.csrfToken(),
+                role:req.session.role,
+                loggedIn: req.session.loggedIn,
+                user: req.session.user
                 })
             }
         });
@@ -25,6 +28,9 @@ exports.getIndex =(req,res,next)=>{
             slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
             products:products,
             csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user
             })
         })
     }
@@ -39,7 +45,11 @@ exports.getProductDetail = (req,res,next)=>{
                 title: "Product Detail",
                 edit:false,
                 product:product,
-                csrfToken: req.csrfToken()
+                csrfToken: req.csrfToken(),
+                role:req.session.role,
+                loggedIn: req.session.loggedIn,
+                user: req.session.user
+
             })
     })
     .catch(err=>console.log(err));
@@ -56,7 +66,6 @@ exports.getCart = (req,res,next)=>{
             if(products[i].productId==null){ // Means admin deleted a product while customer has the item in cart
                 console.log("Unexpected Error"); 
                 products.splice(i, 1);
-                console.log(products);
                 req.user.save();
             }
         }
@@ -75,7 +84,10 @@ exports.getCart = (req,res,next)=>{
             tax:tax,
             shipping:shipping,
             totalPrice: totalPrice,
-            totalSub:totalSub
+            totalSub:totalSub,
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user
 
         })
     }).catch(err=>{
@@ -133,7 +145,12 @@ exports.getOrder = (req,res,next) =>{
             tax: 5.00,
             shipping:6.00,
             orders:orders,
-            date:orderDate
+            date:orderDate,
+            csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user
+
         })
     })
     

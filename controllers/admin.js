@@ -50,7 +50,11 @@ exports.getAddProduct = (req, res, next) => {
     title: "Add Product",
     csrfToken: req.csrfToken(),
     error: "",
-    product: product
+    product: product,
+    role:req.session.role,
+    loggedIn: req.session.loggedIn,
+    user:req.session.user
+
   })
 };
 
@@ -63,7 +67,10 @@ exports.getEditProduct = (req, res, next) => {
         pId: pId,
         error: "",
         product: product,
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        role:req.session.role,
+        loggedIn: req.session.loggedIn,
+        user:req.session.user
       })
     }).catch(err=>{
       console.log(err);
@@ -106,7 +113,10 @@ exports.postEditProduct = (req, res, next) => {
             edit: true,
             error: err,
             product: product,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user:req.session.user
           })
       }else{
         res.redirect('/');

@@ -1,8 +1,7 @@
 var express = require('express');
 var validator = require('../middleware/validate')
-var maincontroller = require('../controllers/main')
+var maincontroller = require('../controllers/user')
 var admincontroller = require('../controllers/admin')
-var authcontroller = require('../controllers/auth/user')
 var csrf = require('csurf')
 var logged = require('../middleware/isLogged');
 var bodyParser = require('body-parser');
@@ -18,12 +17,12 @@ const multerUploadMiddleware = multerFileUpload.upload("product_images");
 /* GET home page. */
 router.get('/',csrfProtection, maincontroller.getIndex);
 router.get('/pDetail',csrfProtection,maincontroller.getProductDetail);
-router.get('/addProduct',logged.checkAuth,csrfProtection, admincontroller.getAddProduct);
-router.get('/editProduct',logged.checkAuth,csrfProtection,admincontroller.getEditProduct);
+router.get('/addProduct',logged.checkAuth,logged.checkAdmin,csrfProtection, admincontroller.getAddProduct);
+router.get('/editProduct',logged.checkAuth,logged.checkAdmin,csrfProtection,admincontroller.getEditProduct);
 
-router.post('/deleteProduct',logged.checkAuth,parseForm,csrfProtection,admincontroller.postdeleteProduct);
-router.post('/editProduct',logged.checkAuth,parseForm,csrfProtection,validator.editProduct,admincontroller.postEditProduct);
-router.post('/addProduct',logged.checkAuth,parseForm,csrfProtection,multerUploadMiddleware,validator.addProduct,admincontroller.postProduct);
+router.post('/deleteProduct',logged.checkAuth,logged.checkAdmin,parseForm,csrfProtection,admincontroller.postdeleteProduct);
+router.post('/editProduct',logged.checkAuth,logged.checkAdmin,parseForm,csrfProtection,validator.editProduct,admincontroller.postEditProduct);
+router.post('/addProduct',logged.checkAuth,logged.checkAdmin,parseForm,csrfProtection,multerUploadMiddleware,validator.addProduct,admincontroller.postProduct);
 
 /* Cart */
 
@@ -37,15 +36,5 @@ router.get('/order',csrfProtection,logged.checkAuth,maincontroller.getOrder);
 
 router.post('/postOrder',csrfProtection,logged.checkAuth,maincontroller.postOrder);
 
-/* Auth */
-
-
-router.get('/login',csrfProtection, authcontroller.getLogin);
-router.get('/signup',csrfProtection, authcontroller.getSignup);
-
-
-router.post('/signup',parseForm,csrfProtection,validator.signUp, authcontroller.postSignup)
-router.post('/login',parseForm,csrfProtection,validator.loggedIn,authcontroller.postLogin)
-router.post('/logout',parseForm,csrfProtection, authcontroller.postLogOut)
 
 module.exports = router;
