@@ -24,50 +24,66 @@
                 <div class="form-input">
                     <div class="label">Product Catagory</div>
                     <select id="catagory" name="product_catagory" required>
-                    <% if(product.catagory =="computer"){ %>
-                        <option value="" disabled >Please choose product catagory</option>    
-                        <option value="computer" selected>Computer</option>
+                <% if(error) {%>
+                        <% if(product.catagory =="computer"){ %>
+                            <option value="" disabled >Please choose product catagory</option>    
+                            <option value="computer" selected>Computer</option>
+                            <option value="phone">Phone</option>
+                            <option value="headphone">Headphone</option>
+                            <option value="gaming">Gaming Accessory</option>
+                            <option value="camera">Camera</option>
+                            <option value="wearable">Wearable</option>
+                        <%}else if(product.catagory =="phone"){%> 
+                            <option value="" disabled >Please choose product catagory</option>    
+                            <option value="computer">Computer</option>
+                            <option value="phone" selected>Phone</option>
+                            <option value="headphone">Headphone</option>
+                            <option value="gaming">Gaming Accessory</option>
+                            <option value="camera">Camera</option>
+                            <option value="wearable">Wearable</option>
+                        <% }else if(product.catagory =="headphone"){%>
+                            <option value="" disabled >Please choose product catagory</option>    
+                            <option value="computer">Computer</option>
+                            <option value="phone">Phone</option>
+                            <option value="headphone" selected>Headphone</option>
+                            <option value="gaming">Gaming Accessory</option>
+                            <option value="camera">Camera</option>
+                            <option value="wearable">Wearable</option>
+                        <%}else if(product.catagory =="gaming"){%>
+                            <option value="" disabled >Please choose product catagory</option>    
+                            <option value="computer">Computer</option>
+                            <option value="phone">Phone</option>
+                            <option value="headphone">Headphone</option>
+                            <option value="gaming" selected>Gaming Accessory</option>
+                            <option value="camera">Camera</option>
+                            <option value="wearable">Wearable</option>
+                        <%}else if(product.catagory =="camera"){%>
+                            <option value="" disabled >Please choose product catagory</option>    
+                            <option value="computer">Computer</option>
+                            <option value="phone">Phone</option>
+                            <option value="headphone">Headphone</option>
+                            <option value="gaming">Gaming Accessory</option>
+                            <option value="camera" selected>Camera</option>
+                            <option value="wearable">Wearable</option>
+                        <%}if(product.catagory =="wearable"){%>    
+                            <option value=""disabled >Please choose product catagory</option>    
+                            <option value="computer">Computer</option>
+                            <option value="phone">Phone</option>
+                            <option value="headphone">Headphone</option>
+                            <option value="gaming">Gaming Accessory</option>
+                            <option value="camera">Camera</option>
+                            <option value="wearable" selected >Wearable</option>
+                        <%}%>
+                    <%}else{%>
+                        <option value="" disabled selected>Please choose product catagory</option>    
+                        <option value="computer">Computer</option>
                         <option value="phone">Phone</option>
                         <option value="headphone">Headphone</option>
                         <option value="gaming">Gaming Accessory</option>
                         <option value="camera">Camera</option>
-                    <%}else if(product.catagory =="phone"){%> 
-                        <option value="" disabled >Please choose product catagory</option>    
-                        <option value="computer">Computer</option>
-                        <option value="phone" selected>Phone</option>
-                        <option value="headphone">Headphone</option>
-                        <option value="gaming">Gaming Accessory</option>
-                        <option value="camera">Camera</option>
-                    <% }else if(product.catagory =="headphone"){%>
-                        <option value="" disabled >Please choose product catagory</option>    
-                        <option value="computer">Computer</option>
-                        <option value="phone">Phone</option>
-                        <option value="headphone" selected>Headphone</option>
-                        <option value="gaming">Gaming Accessory</option>
-                        <option value="camera">Camera</option>
-                    <%}else if(product.catagory =="gaming"){%>
-                        <option value="" disabled >Please choose product catagory</option>    
-                        <option value="computer">Computer</option>
-                        <option value="phone">Phone</option>
-                        <option value="headphone">Headphone</option>
-                        <option value="gaming" selected>Gaming Accessory</option>
-                        <option value="camera">Camera</option>
-                    <%}else if(product.catagory =="camera"){%>
-                        <option value="" disabled >Please choose product catagory</option>    
-                        <option value="computer">Computer</option>
-                        <option value="phone">Phone</option>
-                        <option value="headphone">Headphone</option>
-                        <option value="gaming">Gaming Accessory</option>
-                        <option value="camera" selected>Camera</option>
-                    <%}else{%>    
-                        <option value="" selected disabled >Please choose product catagory</option>    
-                        <option value="computer">Computer</option>
-                        <option value="phone">Phone</option>
-                        <option value="headphone">Headphone</option>
-                        <option value="gaming">Gaming Accessory</option>
-                        <option value="camera">Camera</option>
-                    <%}%>
-                </select>
+                        <option value="wearable" >Wearable</option>      
+                        <%}%>
+                </select> 
                 </div>
             </div>
             <div class="form-row">

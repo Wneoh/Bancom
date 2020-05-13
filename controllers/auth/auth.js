@@ -147,8 +147,8 @@ exports.postResetPassword=(req,res,next)=>{
                         from: 'bancom96@gmail.com',
                         to: req.body.user_email,
                         subject: 'Bancom : Password Reset',
-                        html: `<p>You have requested for a password reset on Bancom.</p>
-                              <p>Please click on this <a href="http://localhost:3000/resetPassword/${token}">link</a> to set a new password.'
+                        html: `<p>You have requested for a password reset at Bancom.</p>
+                              <p>Please click on this <a href="http://localhost:3000/resetPassword/${token}">link</a> to set up a new password.
                         `
                   };
                   

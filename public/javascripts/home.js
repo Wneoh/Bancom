@@ -54,4 +54,7 @@ $( document ).ready(function() {
          myFunction();
       });
       
+    $("#currentPage").click(function(e){
+        e.preventDefault();
+    })  
     })

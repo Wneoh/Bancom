@@ -15,10 +15,10 @@ $(document).ready(function(){
   }
 
   if(spec.height()>500){
-    spec.css("overflow-y","scroll");
+    //spec.css("overflow-y","scroll");
   }
   if(description.height()>500){
-    description.css("overflow-y","scroll");
+    //description.css("overflow-y","scroll");
   }
 
 $("#description").css("display","block");

@@ -45,7 +45,7 @@ exports.postProduct = (req, res, next) => {
 };
 
 exports.getAddProduct = (req, res, next) => {
-  product = new Product(null, null, null, null, null, null);
+  product = new Product(null);
   res.render('add_product', {
     title: "Add Product",
     csrfToken: req.csrfToken(),
@@ -53,7 +53,7 @@ exports.getAddProduct = (req, res, next) => {
     product: product,
     role:req.session.role,
     loggedIn: req.session.loggedIn,
-    user:req.session.user
+    user:req.session.user,
 
   })
 };
@@ -116,10 +116,10 @@ exports.postEditProduct = (req, res, next) => {
             csrfToken: req.csrfToken(),
             role:req.session.role,
             loggedIn: req.session.loggedIn,
-            user:req.session.user
+            user:req.user
           })
       }else{
-        res.redirect('/');
+        res.redirect('/?page=3');
       }
     })
 };

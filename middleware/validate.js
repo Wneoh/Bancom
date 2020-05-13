@@ -8,9 +8,10 @@ exports.addProduct =[
   body('product_catagory').exists().withMessage('Produxt Catagory is required').isString().withMessage('Product Catagory need to be a string'),
   body('product_brand').isLength({min:1}).withMessage('Product brand must be at least 1 char').isLength({max:50}).withMessage('Product brand must not exceed 50 chars').notEmpty().withMessage('Product brand is required.').trim(),
   body('product_price').isFloat({ min:1,max: 20000 }).withMessage('Product price must be numbers and not exceed 20k').exists().withMessage('Product price is required.').trim(),
-  body('product_description').isLength({min:20}).withMessage('Product description must be at least 20 chars').isLength({max:2000}).withMessage('Product description must not exceed 2000 chars').notEmpty().withMessage('Product Description is required.'),
-  body('product_specs').isLength({min:20}).withMessage('Product specs must be at least 20 char').isLength({max:2000}).withMessage('Product specs must not exceed 2000 chars').notEmpty().withMessage('Product specs is required.'),
+  body('product_description').trim().isLength({min:20, max:2000}).withMessage('Product description must be at least 20 chars and less than 2000 chars').notEmpty().withMessage('Product Description is required.').trim(),
+  body('product_specs').trim().isLength({min:20 , max:2000}).withMessage('Product specs must be at least 20 chars and less than 2000 chars').notEmpty().withMessage('Product specs is required.').trim(),
   (req, res,next) => {
+    console.log((req.body.product_specs).length)
     var errorValidation = validationResult(req);
     var err_msg='';    
     var files = req.files;       
@@ -49,7 +50,8 @@ exports.addProduct =[
             product:product,
             csrfToken: req.csrfToken(),
             role:req.session.role,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            user: req.session.user,
           })
         );
     }
@@ -63,8 +65,8 @@ exports.editProduct =[
   body('product_catagory').exists().withMessage('Produxt Catagory is required').isString().withMessage('Product Catagory need to be a string'),
   body('product_brand').isLength({min:1}).withMessage('Product brand must be at least 1 char').isLength({max:50}).withMessage('Product brand must not exceed 50 chars').notEmpty().withMessage('Product brand is required.').trim(),
   body('product_price').isFloat({ min:1,max: 20000 }).withMessage('Product price must be numbers and not exceed 20k').exists().withMessage('Product price is required.').trim(),
-  body('product_description').isLength({min:20}).withMessage('Product description must be at least 20 chars').isLength({max:2000}).withMessage('Product description must not exceed 2000 chars').notEmpty().withMessage('Product Description is required.'),
-  body('product_specs').isLength({min:20}).withMessage('Product specs must be at least 20 char').isLength({max:2000}).withMessage('Product specs must not exceed 2000 chars').notEmpty().withMessage('Product specs is required.'),
+  body('product_description').isLength({min:20}).withMessage('Product description must be at least 20 chars').isLength({max:2000}).withMessage('Product description must not exceed 2000 chars').notEmpty().withMessage('Product Description is required.').trim(),
+  body('product_specs').isLength({min:20}).withMessage('Product specs must be at least 20 char').isLength({max:2000}).withMessage('Product specs must not exceed 2000 chars').notEmpty().withMessage('Product specs is required.').trim(),
   (req, res,next) => {
     var errorValidation = validationResult(req);
     var err_msg='';    

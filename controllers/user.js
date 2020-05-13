@@ -2,27 +2,28 @@ const Product = require('../models/product');
 const Order = require('../models/order');
 var dateFormat = require('dateformat');
 
+const ITEMS_PER_PAGE =8;
 exports.getIndex =(req,res,next)=>{
-    if(req.query.catagory){
-        Product.find({catagory:req.query.catagory}, function(err, docs) {
-            if(err){
-                console.log(err);
-            }else{
-                res.render('Index',{
-                title:"Bancom",
-                slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
-                products:docs,
-                csrfToken: req.csrfToken(),
-                role:req.session.role,
-                loggedIn: req.session.loggedIn,
-                user: req.session.user
-                })
-            }
-        });
+    all =false;
+    if(req.query.page==undefined){
+        req.query.page=1;
+    }
+    if(req.query.catagory =="all"){
+        req.session.catagory=null;
+        all =true;
     }else{
-        Product.find()
+        req.session.catagory= req.query.catagory
+    }
+    const page =+req.query.page;
+    let totalItems;
+    if(req.session.catagory){
+        Product.find({catagory:req.session.catagory}).countDocuments().then(numProducts =>{
+            totalItems = numProducts;
+            return Product.find({catagory:req.session.catagory}).skip((page-1)* ITEMS_PER_PAGE)
+            .limit(ITEMS_PER_PAGE)
+            
+        })
         .then(products =>{
-            //console.log(products);
             res.render('Index',{
             title:"Bancom",
             slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
@@ -30,7 +31,44 @@ exports.getIndex =(req,res,next)=>{
             csrfToken: req.csrfToken(),
             role:req.session.role,
             loggedIn: req.session.loggedIn,
-            user: req.session.user
+            catagory:req.session.catagory,
+            user: req.session.user,
+            totalProducts: totalItems,
+            currentPage: page,
+            hasNextPage:ITEMS_PER_PAGE *page <totalItems,
+            hasPreviousPage: page > 1,
+            nextPage: page+1,
+            previousPage : page -1,
+            lastPage: Math.ceil(totalItems/ITEMS_PER_PAGE),
+            all:all
+            })
+        })
+    }else{
+
+        Product.find().countDocuments().then(numProducts =>{
+            totalItems = numProducts;
+            return Product.find().skip((page-1)* ITEMS_PER_PAGE)
+            .limit(ITEMS_PER_PAGE)
+            
+        })
+        .then(products =>{
+            res.render('Index',{
+            title:"Bancom",
+            slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
+            products:products,
+            csrfToken: req.csrfToken(),
+            role:req.session.role,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user,
+            totalProducts: totalItems,
+            catagory:req.body.catagory,
+            currentPage: page,
+            hasNextPage:ITEMS_PER_PAGE *page <totalItems,
+            hasPreviousPage: page > 1,
+            nextPage: page+1,
+            previousPage : page -1,
+            lastPage: Math.ceil(totalItems/ITEMS_PER_PAGE),
+            all:all
             })
         })
     }

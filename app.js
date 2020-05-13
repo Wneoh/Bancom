@@ -7,12 +7,14 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
+const compression = require('compression')
 const User = require('./models/user');
 const flash = require('connect-flash');
+const helmet = require('helmet');
 const MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
 
-const MONGODB_URI ='mongodb+srv://wneoh:wneoh@bananacom0-glvvj.mongodb.net/bancom'
+const MONGODB_URI =`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@bananacom0-glvvj.mongodb.net/${process.env.MONGO_DEFAULT_DB}`
 const store = new MongoDBStore({
   uri:MONGODB_URI,
   collection: 'sessions'
@@ -25,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(flash());
 app.use(express.json());
 app.use(cookieParser());
+app.use(compression());
+app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser())
 app.use(session({
@@ -56,17 +60,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-mongoose.connect(MONGODB_URI,{ 
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true 
-})
-.then(result =>{
-  app.listen(3000);
-})
-.catch(err =>{
-  console.log(err);
-})
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -85,5 +79,15 @@ app.use(function(err, req, res, next) {
     });
   }
 });
-
+mongoose.connect(MONGODB_URI,{ 
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true 
+})
+.then(result =>{
+  app.listen(process.env.PORT || 3000);
+})
+.catch(err =>{
+  console.log(err);
+})
 module.exports =app;

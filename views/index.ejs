@@ -14,31 +14,49 @@
 </div>
 <div class="main-container">
     <div class="filter-container">
+      <span class="filter-title">Electronic Catagory</span>
       <div class="filter">
-        <span>Electronics</span>
         <ul class="filter-list">
+          <a href="/?catagory=camera">
+            <li>
+              Camera
+            </li>
+          </a>
+          <a href="/?catagory=phone">
           <li>
-            <a href="/?catagory=camera">Camera</a>
+            Cell Phone
           </li>
+        </a>
+        <a href="/?catagory=computer">
           <li>
-            <a href="/?catagory=phone">Cell Phone</a>
+           Computer
           </li>
+        </a>
+        <a href="/?catagory=headphone">
           <li>
-            <a href="/?catagory=computer">Computer</a>
+            Headphone
           </li>
+        </a>
+        <a href="/?catagory=gaming">
           <li>
-            <a href="/?catagory=headphone">Headphone</a>
+            Gaming Accessories
           </li>
+        </a>
+        <a href="/?catagory=wearable">
           <li>
-            <a href="/?catagory=gaming">Gaming Accessories</a>
+            Wearable
           </li>
+        </a>
+        <a id="all" href="/?catagory=all">
           <li>
-            <a id="all" href="/">See All</a>
+            See All
           </li>
+          </a>
         </ul>
       </input>
       </div>
     </div>
+    <div class="product-main-container">
     <div class="products-container">
       <% for( let i =0; i<products.length;i++){ %>
         <div class="product">
@@ -46,7 +64,7 @@
           <div class="brief-container" >
           <img class ="product-img" src="data:<%= products[i].image[0].contentType %>;base64,<%= products[i].image[0].data %>" alt="products[i].image[0].name">
           </div>
-          <p class="product-brand"><%= products[i].brand %></p> 
+          <p class="product-brand"><%= (products[i].brand).toUpperCase() %></p> 
           <div class="brief-title">
             <p class="product-title"><%= products[i].name %></p>
           </div>
@@ -71,10 +89,71 @@
         </div>
       <% } %>
     </div>
+    <div class="page-section">
+      <div class="page-content">
+          <%if(!catagory) {%>
+            <% if (currentPage != 1) { %>
+                <a href="/?page=1"><div class="page">1</div></a>
+              <% }%>
+              <% if (hasPreviousPage) { %>
+                <% prepage =2;%>
+                <% while (prepage < previousPage+1)  { %>
+                  <a href="/?page=<%= prepage %>"><div class="page"><%= prepage  %></div></a>
+                  <% prepage++; %>
+                <% }%>  
+              <% }%>
+              <a class="active" id="currentPage" href="/?page=<%= currentPage %>">
+              <div class="page">
+                <%= currentPage %>
+              </div></a>
+              <% if (hasNextPage) { %>
+                <% temp =nextPage %>
+                <% while (nextPage < lastPage)  { %>
+                  <a href="/?page=<%= nextPage %>"><div class="page"><%= nextPage %></div></a>
+                  <% nextPage++; %>
+                <% }%>  
+              <% }%>
+              <% if (lastPage !== currentPage) { %>
+                <a href="/?page=<%= lastPage %>"><div class="page">
+                  <%= lastPage %></div></a>
+              
+              <% } %>
+        <%}else{%>
+          <% if (currentPage != 1) { %>
+            <a href="/?page=1"><div class="page">1</div></a>
+          <% }%>
+          <% if (hasPreviousPage) { %>
+            <% prepage =2;%>
+            <% while (prepage < previousPage+1)  { %>
+              <a href="/?page=<%= prepage %>"><div class="page"><%= prepage  %></div></a>
+              <% prepage++; %>
+            <% }%>  
+          <% }%>
+          <a class="active" id="currentPage" href="/?page=<%= currentPage %>">
+          <div class="page">
+            <%= currentPage %>
+          </div></a>
+          <% if (hasNextPage) { %>
+            <% temp =nextPage %>
+            <% while (nextPage < lastPage)  { %>
+              <a href="/?page=<%= nextPage %>"><div class="page"><%= nextPage %></div></a>
+              <% nextPage++; %>
+            <% }%>  
+          <% }%>
+          <% if (lastPage !== currentPage) { %>
+            <a href="/?page=<%= lastPage %>"><div class="page">
+              <%= lastPage %></div></a>
+          
+          <% } %>
+          <%} %>
+        </div>
+    </div>
   </div>
-  <% if(products){ %>
+</div>
+ 
+  <% if(catagory || (currentPage>1)|| all){ %>
     <script>
-      window.scrollTo(0,500)
+      window.scrollTo(0,350)
     </script>
   <% } %>
   <script> $(".menu").css("position","fixed");</script>

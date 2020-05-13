@@ -204,31 +204,45 @@ html{
 .filter-container{
   flex:1;
   width:350px;
-  padding:10px;
   padding-top:0;
   font-size: 15px;
 }
+.filter-title{
+  font-weight: bold;
+  font-family: Akzidenz,'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.filter-list{
+  border-top:0.2px solid rgb(0, 64, 94);
+  padding-left: 0px;
+  margin-right: 25px;
+}
 .filter-list li{
   list-style: none;
-  padding:5px;
+  padding: 5px;
+  margin-top: 5px;
 }
-.filter-list li a{
+.filter-list a{
   text-decoration: none;
   color:black;
-  font-size: 15px;
+  font-size: 14px;
+  text-indent: 8px;
 }
-.filter-list li a:hover{
-  text-decoration: underline;
-  color:rgba(168, 163, 163, 0.897);
-  transition: .2s;
+.filter-list a:hover{
+  color:rgb(56, 152, 179);
+  transition: .1s;
 }
 /* product part */
 .products-container{
   display:flex;
   flex-wrap:wrap;
-  flex:6;
 }
+.product-main-container{
+  display: flex;
+  flex:6;
+  flex-direction: column;
 
+}
 .price-input{
   padding: 15px 19px;
 }
@@ -575,7 +589,7 @@ input{
 }
 
 .sub-img{
-  width: 70px;
+  width: 55px;
   margin: auto;
   height: auto;
   padding: 5px;
@@ -672,7 +686,7 @@ input{
 }
 
 .description-tab{
-  overflow: hidden;
+  
   display: flex;
   justify-content: start;
   border-bottom: 0.5px solid #acacac;
@@ -694,7 +708,7 @@ input{
 .tabcontent{
   padding: 5px 5px;
   min-height: 450px;
-  max-height: 550px;
+  
   font-size:15px;
   width:inherit;
 }
@@ -1070,9 +1084,63 @@ flex-direction: column;
 font-family: 'Lato', sans-serif;
 }
 
+.filter-container{
+  font-family: 'Lato', sans-serif;
+}
+
 .error-container img{
   width: 100px;
 }
+
+.page-section{
+  display: flex;
+  justify-content: center
+}
+.page-content{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.page-section a{
+  text-decoration: none;
+  padding: 10px;
+  border:1px solid #acacac;
+  border-radius:3px;
+  width: 40px;
+  margin: 15px;
+  
+}
+
+.page-section a.active{
+  background-color: #acacac;
+  cursor: default;
+  color: white;
+  width: 40px;
+  margin: 15px;
+}
+
+.page-section a.active:hover {
+  background-color: #244657;
+  border:1px solid #acacac;
+  border-radius:3px;
+  cursor: text;
+}
+
+.page-section a:hover {
+  background-color: #244657;
+  border:1px solid #acacac;
+  border-radius:3px;
+}
+.page-section a:hover .page{
+  color:white
+}
+.page{
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+
 *{
   box-sizing: border-box;
 }

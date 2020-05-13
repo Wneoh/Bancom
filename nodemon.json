@@ -1,0 +1,6 @@
+{"env":{
+    "MONGO_USER":"wneoh",
+    "MONGO_PASSWORD":"wneoh",
+    "MONGO_DEFAULT_DB":"bancom"
+  }
+}
