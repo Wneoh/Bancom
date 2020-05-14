@@ -76,7 +76,8 @@ userSchema.methods.removeFromCart = function(pId){
     return this.save();
 }
 
-userSchema.methods.updateToCart = function(pId,quantity){
+userSchema.methods.updateToCart = async function(pId,quantity){
+    
     const updatedCartItems = this.cart.items.filter(item=>{
         return item.productId.toString() !== pId.toString();
     })
@@ -86,9 +87,12 @@ userSchema.methods.updateToCart = function(pId,quantity){
                 updatedCartItems[i].quantity=quantity;
             }
         }
+        const updatedCart ={
+            items:updatedCartItems
+        };
+        this.cart = updatedCart;
     }
-
-    return this.save();
+    return await this.save();
 
 }
 

@@ -56,3 +56,22 @@ $("#description").css("display","block");
         //$(imgs).parent().css("border", "1px solid #244657");
         $(".main-img").attr('src',sub_img); // change the main img src to the clicked img src        
       }
+
+      function openAcc(acc,panelName){
+        if($(acc).parent().find("active1")){
+          $(".accordion").removeClass("active1");
+          $(".panel").css("height","0px");
+        }
+        if($("."+panelName).height()>0){
+          $(acc).removeClass("active1");
+          $("."+panelName).css('height',"0px");
+          return;
+        }
+        $(acc).addClass("active1");
+        height = $(".content").height()+30;
+        console.log(height);
+        $("."+panelName).css('height',height);
+        
+      }
+
+    

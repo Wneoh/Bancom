@@ -1,55 +1,78 @@
 <%- include('layouts/header'); -%>
+
 <body class="main2">
-<div class="detail-container">
-  
+  <div class="detail-container">
+
     <div class="detail">
       <div class="row">
         <% for(var i=0;i<product.image.length;i++){ %>
-          <div class="column">
-            <img class="sub-img" src="data:<%= product.image[i].contentType %>;base64,<%= product.image[i].data %>" alt="product.image[i].name"  onmouseover="showSubImg(this);">
-          </div>
+        <div class="column">
+          <img class="sub-img" src="data:<%= product.image[i].contentType %>;base64,<%= product.image[i].data %>"
+            alt="product.image[i].name" onmouseover="showSubImg(this);">
+        </div>
         <%}%>
         </div>
         <div class="detail-img">
           <div class="container-img">
-            <img class = "main-img" src="data:<%= product.image[0].contentType %>;base64,<%= product.image[0].data %>" alt="product.image[0].name">
+            <img class = "main-img" src="data:<%= product.image[0].contentType %>;base64,<%= product.image[0].data %>"
+        alt="product.image[0].name">
+      </div>
+    </div>
+    <div id="smallphone-row" class="row">
+      <% for(var i=0;i<product.image.length;i++){ %>
+      <div class="column">
+        <img class="sub-img" src="data:<%= product.image[i].contentType %>;base64,<%= product.image[i].data %>"
+          alt="product.image[i].name" onmouseover="showSubImg(this);">
+      </div>
+      <%}%>
           </div>
-        </div>
         <div class="detail-description">
             <p style="margin:0px; font-weight: bold; color:#244657;"><%= product.brand %></p>
-            <p style="font-family: 'Lato', sans-serif; font-size:20px;"><%= product.name %></p>
-            <p style="margin-top:10px; font-weight: bold;">RM <%= product.price.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
-            <form id="form-quantity" class="form-loading" action="/cart" method="POST">
-            <!-- <select id="product-quantity" name="product_quantity" required>
+      <p style="font-family: 'Lato', sans-serif; font-size:20px;"><%= product.name %></p>
+      <p style="margin-top:10px; font-weight: bold;">RM
+        <%= product.price.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
+      <form id="form-quantity" class="form-loading" action="/cart" method="POST">
+        <!-- <select id="product-quantity" name="product_quantity" required>
               <option value=1 selected>1</option>
               <option value=2>2</option>
               <option value=3>3</option>
               <option value=4>4</option>
           </select> -->
-          <input type="hidden" name="pId" value="<%= product._id %>">
-          <input type="hidden" name="_csrf" value="<%=csrfToken %>">
-            <button type="submit" class="submit"><strong>Add To Cart</strong></button>
-          </form>
-        </div>
+        <input type="hidden" name="pId" value="<%= product._id %>">
+        <input type="hidden" name="_csrf" value="<%=csrfToken %>">
+        <button type="submit" class="submit"><strong>Add To Cart</strong></button>
+      </form>
     </div>
-    <div class="description-section">
+  </div>
+  <div class="description-section">
+    <button class="accordion" onclick="openAcc(this, 'description-panel')" >Description</button>
+    <div class="description-panel panel">
+      <div class="content"><%- product.description %></div>
+    </div>
+
+    <button class="accordion" onclick="openAcc(this, 'specs-panel')" >Specifications</button>
+    <div class="specs-panel panel">
+      <div class="content">
+      <%- product.specs %>
+    </div>
+    </div>
     <div class="detail-description-container">
-    <div class="description-tab">
-      <button class="tablinks" onclick="openTab(event, 'description')"><Strong>Description</Strong></button>
-      <button class="tablinks" onclick="openTab(event, 'spec')"><Strong>Specs</Strong></button>
-    </div>
-    <div class="tabcontent-con">
-    <div id="description" class="tabcontent">
-        <%- product.description %> 
-    </div>
-    <div id="spec" class="tabcontent">
-      <%- product.specs %> 
-    </div> 
+      <div class="description-tab">
+        <button class="tablinks" onclick="openTab(event, 'description')"><Strong>Description</Strong></button>
+        <button class="tablinks" onclick="openTab(event, 'spec')"><Strong>Specs</Strong></button>
+      </div>
+      <div class="tabcontent-con">
+        <div id="description" class="tabcontent">
+          <%- product.description %>
+        </div>
+        <div id="spec" class="tabcontent">
+          <%- product.specs %>
+        </div>
+      </div>
     </div>
   </div>
+
   </div>
-    
-</div>
-<script>$(".menu").css("position","relative");</script>
+  <script>$(".menu").css("position", "relative");</script>
 </body>
 <%- include('layouts/footer'); -%>

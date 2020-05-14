@@ -25,13 +25,41 @@
     <link rel="stylesheet" href="/stylesheets/media.css">
 
 </head>
+<body>
 <div class="after-submit">
   <div class="lds-ring" >
       <div></div><div></div><div></div><div></div>
   </div>
 </div>
+<div class="background">
+<div id ="mySidenav"class="sidenav">
+  <div class="sidenav-logo">
+    <a class="side-logo-link" href="/"><img  src="/images/home/logo.png" alt="side-bar-logo"></a>
+    <a href="javascript:void(0)" class="closebtn link" onclick="closeNav()">&times;</a>
+  </div>
+  <% if(!loggedIn){ %>
+    <a id="login-mini" href="/login"><strong>Login/Register</strong></a>
+    <%}%>
+    <a id="order-mini"href="/order"><strong>My Order</strong></a>
+    <% if(loggedIn){ %>
+    <form action="/logout" id="form-logout" method="POST">
+      <input type="hidden" name="_csrf" value="<%=csrfToken %>">
+      <button type="submit">Sign Out</button>
+    </form>
+    <% } %>
+</div>
+</div>
+
+<div class="overlay">
 <div class="menu">
-    <a class="logo" href="/"><img  src="/images/home/logo.png" alt=""></a>
+    <div class="hamburger"  id="small" onclick="openNav()">
+      <img id="burger-menu" src="/images/icons/burger-menu.png" alt="">
+      </div>
+    <a class="logo" id="small" href="/"><img  src="/images/home/logo.png" alt=""></a>
+    <a  id="small" class="menu-item-con"href="/cart">
+      <div class="menu-item" ><img class="cart-icon" src="/images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
+    </a>
+  <a class="logo" id="main-logo" href="/"><img  src="/images/home/logo.png" alt=""></a>
     <% if(role =="admin"){ %>
     <div class="menu-container">
       <a class="menu-item-con" href="/">
@@ -61,12 +89,15 @@
             <div class="menu-item" ><img class="cart-icon" src="/images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
             </a>
     </div>
-    <% }else{%>      
+    <% }else{%>  
+          
       <div class="menu-container-login">
+        
         <a class="menu-item-con" href="/">
           <div class="menu-item" >
             <img src="/images/icons/home.png" alt=""><br><strong>Home</strong></div>
         </a>
+        
             <div class="menu-item-con" id="menu-profile" onclick="myFunction()">
               <div class="menu-item">
                 <img class="profile-icon" src="/images/icons/user.png" alt="">
@@ -92,7 +123,7 @@
             <a class="menu-item-con"href="/cart">
               <div class="menu-item" ><img class="cart-icon" src="/images/icons/shopping-cart.png" alt=""><br><strong>Cart</strong></div>
               </a>
-      </div>
+      </div> 
       <% } %>
   </div>
 

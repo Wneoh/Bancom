@@ -82,7 +82,8 @@ app.use(function(err, req, res, next) {
 mongoose.connect(MONGODB_URI,{ 
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true 
+  useCreateIndex: true ,
+  useFindAndModify: false   
 })
 .then(result =>{
   app.listen(process.env.PORT || 3000);

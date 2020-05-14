@@ -5,6 +5,16 @@
   and (orientation: portrait) {
       /* smartphones, iPhone, portrait 480x320 phones */
 
+    /*home*/
+    #main-logo{
+        display: none;
+    }
+    .menu-container{
+        display: none;
+    }
+    .menu-container-login{
+        display: none;
+    }
     #dot-container{
         display:none;
     }
@@ -12,11 +22,200 @@
     #slideshow-container{
         display: none;
     }
+
+    .filter-container{
+        display: none;
+        padding-right:0;
+    }
+    .logo{
+        margin-left: 5px;
+        flex:4;
+    }
+    .main-container{
+        padding: 75px 10px 15px 10px;
+    }
+    .product{
+        padding:10px 20px 10px 20px;
+        width: 45vw;
+    }
+    .brief-container{
+        height: 200px;
+    }
+    .brief-title{
+        font-size: 12px;
+    }
+    .product-price{
+        font-size: 12px;
+    }
+
+    /* product detail */
+    .logo img{
+        position: relative;
+    }
+    .detail{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .detail-img{
+        padding: 0px;
+    }
+    .row{
+        
+        display: none;
+    }
+    #smallphone-row{
+        display: flex;
+        flex-direction: row;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .detail-container{
+        margin:0px;
+        width: auto;
+    }
+    #form-quantity{
+        margin: auto;
+    }
+
+    #form-quantity button{
+        width:260px;
+    }
+    .detail-description-container{
+        display:none;
+    }
+    .description-section{
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+    }
+    .container-img{
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .main-img{
+        width:250px;
+    }
+
+    /* login page */
+    .login-container{
+        padding:0px;
+        margin:0px;
+    }
+    .login-content{
+        box-shadow: none;
+        padding:0px;
+        padding-top: 65px;
+        padding-bottom: 50px;
+    }
+    .login-content form input{
+        width: 255px;
+        font-size:13px;
+    }
+    .login-content .submit{
+        width:255px;
+        font-size:13px;
+    }
+    .need-acc{
+        margin:0px;
+    }
+    .cart-container{
+        display: none;
+    }
+    .maincart-container{
+        flex-direction: column;
+    }
     
+    .total-container{
+        margin:0px;
+        width: 100%;
+        justify-content: center;
+        margin-top:10px;
+
+    }
+    .total-content{
+        position: relative;
+        border-radius: 0px;
+        border: none;
+        width: 100%;
+        box-shadow: none;
+    }
+    .summary-con{
+        font-size: 15px;
+    }
+    .summary-con h3{
+        display: none;
+    }
+    .mini-title{
+        font-family: 'Lato', sans-serif;
+        color: black;
+    }
+
+    /* order */
+    .order-container{
+        padding:0px;
+        margin:0px;
+        border-radius: 0px;
+    }
+    .order-container h3{
+        padding-left: 10px;
+        font-family: 'Lato', sans-serif;
+        color: black;
+    }
+    #date{
+        display: none;
+    }
+    .cart-item{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .img-holder{
+        display:none;
+    }
+    .cart-bar{
+        border-radius: 0px;
+    }
+    #shipping{
+        display: none;
+    }
+    #sales{
+        display: none;
+    }
+
+    #order-mini{
+        color: #0D3842 !important;
+        padding: 20px 25px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        border: none;
+        font-weight: bold;
+        background-color: #e5e5e5;
+        cursor: pointer;
+        font-size:12px;
+    }
+    #login-mini{
+        color: #0D3842 !important;
+        padding: 20px 25px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        border: none;
+        font-weight: bold;
+        background-color: #e5e5e5;
+        cursor: pointer;
+        font-size:12px;
+    }
+    html {
+        height: 100%;
+    }
 }
 @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
 @media (min-width:641px)  and (max-device-width: 800px){ 
     /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    #main-logo{
+        display: none;
+    }
     #slideshow-container{
         height:325px;
     }
@@ -27,6 +226,9 @@
         display: none;
         padding-right:0;
     }
+    .menu-container-login{
+        display: none;
+      }
 
     #slideshow-content img{
         width:800px;
@@ -46,7 +248,6 @@
         display: flex;
         flex:3;
         flex-direction: column;
-      
     }
     
     @keyframes slide{
@@ -94,12 +295,81 @@
         .row{
             padding:30px;
         }
+        #smallphone-row{
+            display:none;
+        }
         .description-section{
             margin:30px 30px 0px 30px;
+            
         }
-
+        .detail-description-container{
+            display:none;
+        }
+        .detail-description{
+            margin:30px;
+            margin-top:0px;
+        }
+        .detail-container .submit{
+            width:280px;
+        }
+        
+        .menu-item-con{
+            margin:0px;
+            margin-left: auto;
+            flex:0;
+            
+        }
+        .menu{
+            justify-content: space-between;
+        }
+        .logo{
+            margin: auto;
+            margin-left:35%;
+        }
+        .menu-item{
+            width: 70px;
+        }
+        
+        #order-mini{
+            color: #0D3842 !important;
+            padding: 20px 25px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border: none;
+            font-weight: bold;
+            background-color: #e5e5e5;
+            cursor: pointer;
+            font-size:12px;
+        }
+        #login-mini{
+            color: #0D3842 !important;
+            padding: 20px 25px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            border: none;
+            font-weight: bold;
+            background-color: #e5e5e5;
+            cursor: pointer;
+            font-size:12px;
+        }
 
 }
 @media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
-@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1025px) { 
+    .hamburger{
+        display: none;
+    }
+    #small{
+        display: none;
+    }
+    #smallphone-row{
+        display: none;
+    }
+    .accordion{
+        display: none;
+    }
+ }
+
 @media (min-width:1281px) { /* hi-res laptops and desktops */ }

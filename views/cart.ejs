@@ -1,5 +1,60 @@
 <%- include('layouts/header'); -%>
 <div class="maincart-container">
+
+    <div class="small-cart-container">
+        <p class="cart-bar-title">My Cart</p>
+        <% for (var i=0; i<products.length;i++){ %>
+        <div class="item-container">
+            <div class="item img"><img src="data:<%= products[i].productId.image[0].contentType %>;base64,<%= products[i].productId.image[0].data %>" alt="<%= products[i].productId.image[0].name %>"></div>
+            <div class="item desc"><p><%= products[i].productId.name %></p>
+            <p>Qty: <%= products[i].quantity %> at each RM <%= products[i].productId.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
+            <p style="font-weight:bold">RM <%= (products[i].productId.price*products[i].quantity).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></p>
+            <form action="/updateCart" method="POST" class="loading-form">
+                <div class="update"><select style="margin: 0px;" id="product-quantity" name="quantity"
+                        required>
+                        <% if(products[i].quantity ==1){ %>
+                            <option value=1 selected >1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        <%}else if(products[i].quantity ==2){%> 
+                            <option value=1>1</option>
+                            <option value=2 selected>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        <% }else if(products[i].quantity ==3){%>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3 selected>3</option>
+                            <option value=4>4</option>
+                        <%}else if(products[i].quantity ==4){%>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4 selected>4</option>
+                        <%}else{%>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        <%}%>
+                        </select>
+                    <input type="hidden" name="pId" value='<%= products[i]._id %>'>
+                    <input type="hidden" name="_csrf" value="<%=csrfToken %>">
+                    <button  type = "submit" class="submit">update</button>
+                    </form>
+        <form action="/deleteCart" method="POST" class="loading-form">
+            <input type="hidden" name="_csrf" value="<%=csrfToken %>">
+            <input type="hidden" name="pId" value='<%= products[i]._id %>'>
+            <button type="submit" class="delete-submit"  class="submit">
+                <strong>X</strong>
+            </button>
+        </form>
+    </div>
+    </div>
+        </div>
+    <% }%>
+    </div>
     <div class="cart-container">
         <h3>Shopping Cart</h3>
         <div class="cart-detail">
@@ -72,6 +127,7 @@
             <% } %>
         </div>
     </div>
+    <p class="mini-title cart-bar-title">Order Summary</p>
     <div class="total-container">
         <div class="total-content">
             <div class="summary-con">

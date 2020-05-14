@@ -57,4 +57,17 @@ $( document ).ready(function() {
     $("#currentPage").click(function(e){
         e.preventDefault();
     })  
+    
     })
+    function openNav() {
+        $("#mySidenav").css("width","280px");
+        $('.background').addClass("darkbackground");
+        $(".overlay").css("position","fixed");
+    }
+  
+    function closeNav() {
+        $("#mySidenav").css("width","0px");
+        $('.background').removeClass("darkbackground");
+        $(".overlay").css("position","relative");
+    } 
+
