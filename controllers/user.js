@@ -24,7 +24,7 @@ exports.getIndex =(req,res,next)=>{
             
         })
         .then(products =>{
-            res.render('Index',{
+            res.render('index',{
             title:"Bancom",
             slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
             products:products,
@@ -52,7 +52,7 @@ exports.getIndex =(req,res,next)=>{
             
         })
         .then(products =>{
-            res.render('Index',{
+            res.render('index',{
             title:"Bancom",
             slide_hero:["/images/home/apple-home.jpg","/images/home/controller-home.jpg","/images/home/camera-home.jpg","/images/home/phone-home.jpg"],
             products:products,
