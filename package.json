@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production&& nodemon ./app.js",
+    "start": "NODE_ENV=production&& MONGO_USER=wneoh MONGO_PASSWORD=wneoh MONGO_DEFAULT_DB=bancom node ./app.js",
     "start-server": "node ./app.js",
     "dev": "NODE_ENV=development && nodemon ./app.js"
   },
