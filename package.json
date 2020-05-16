@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SET NODE_ENV=production&& node ./app.js",
+    "start": "NODE_ENV=production&& nodemon ./app.js",
     "start-server": "node ./app.js",
-    "dev": "set NODE_ENV=development && nodemon ./app.js"
+    "dev": "NODE_ENV=development && nodemon ./app.js"
   },
   "author": "wneoh",
   "license": "ISC",
