@@ -401,10 +401,16 @@
         padding: 10px 20px 10px 20px;
         width: 235px;
     }
+    .product{
+        width:290px;
+    }
  }
 @media (min-width:1025px) { 
     .hamburger{
         display: none;
+    }
+    .product{
+        width:290px;
     }
     #small{
         display: none;
