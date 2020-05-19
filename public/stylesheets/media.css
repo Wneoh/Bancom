@@ -35,13 +35,13 @@
     .product{
         padding:10px 20px 10px 20px;
         width: 42vw;
-        height:60vh;
+        height:35vh;
     }
     .product-img{
         width:25vw ;
     }
     .brief-container{
-        height: auto;
+        height: 200px;
     }
     .brief-title{
         font-size: 12px;
