@@ -51,7 +51,7 @@ exports.postSignup=(req,res,next)=>{
 }
 
 exports.getSignup=(req,res,next)=>{    
-      res.render('auth/SignUp',{
+      res.render('auth/signup',{
       title:"Sign Up",
       csrfToken: req.csrfToken(),
       old_email:"",
