@@ -34,7 +34,11 @@
     }
     .product{
         padding:10px 20px 10px 20px;
-        width: 44vw;
+        width: 42vw;
+        height:60vh;
+    }
+    .product-img{
+        width:25vw ;
     }
     .brief-container{
         height: auto;
@@ -442,5 +446,8 @@
     }
     .mini-title{
         display:none;
+    }
+    .product{
+        width: 290px;
     }
 }

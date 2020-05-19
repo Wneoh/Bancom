@@ -78,17 +78,26 @@ exports.getIndex =(req,res,next)=>{
 exports.getProductDetail = (req,res,next)=>{
     var pid = req.query.pid;
     Product.findById(pid).then(
-        product=>{
-            res.render('pdetail',{
-                title: "Product Detail",
-                edit:false,
-                product:product,
-                csrfToken: req.csrfToken(),
-                role:req.session.role,
-                loggedIn: req.session.loggedIn,
-                user: req.session.user
-
-            })
+            product=>{
+                if(product){
+                    res.render('pdetail',{
+                        title: "Product Detail",
+                        edit:false,
+                        product:product,
+                        csrfToken: req.csrfToken(),
+                        role:req.session.role,
+                        loggedIn: req.session.loggedIn,
+                        user: req.session.user
+    
+                    })
+                }else{
+                    res.render('error',{
+                        title: "Error...",
+                        message:"Sorry, we could not find your product"
+    
+                    })
+                }
+                
     })
     .catch(err=>console.log(err));
 }
@@ -136,7 +145,15 @@ exports.getCart = (req,res,next)=>{
 exports.postCart =(req,res,next)=>{
     const pId = req.body.pId;
     Product.findById(pId).then(product=>{
-        return req.user.addToCart(product);
+        if(product){
+            return req.user.addToCart(product);
+        }else{
+            res.render('error',{
+                title: "Error...",
+                message:"Sorry, we could not add your product to your cart. Please try it again later."
+
+            })
+        }
     }).then(result=>{
         res.redirect('/');
     }).catch(err=>{
@@ -149,7 +166,15 @@ exports.postDeleteCart =(req,res,next)=>{
     req.user
     .removeFromCart(pId)
     .then(result=>{
-        res.redirect('/cart');
+        if(result){
+            res.redirect('/cart');
+        }else{
+            res.render('error',{
+                title: "Error...",
+                message:"Sorry, we could not remove your product from your cart. Please try it again later."
+
+            })
+        }
     }).catch(err => console.log(err));
 }
 
@@ -160,7 +185,15 @@ exports.postUpdateCart=(req,res,next)=>{
     req.user
     .updateToCart(pId,quantity)
     .then(result=>{
-        res.redirect('/cart');
+        if(result){
+            res.redirect('/cart');
+        }else{
+            res.render('error',{
+                title: "Error...",
+                message:"Sorry, we could not update your cart. Please try it again later."
+
+            })
+        }
     }).catch(err => console.log(err));
 }
 
@@ -222,7 +255,16 @@ exports.postOrder = (req,res,next) =>{
         })
         return order.save();
     }).then(result =>{
-        return req.user.clearCart();
+        if(result){
+            return req.user.clearCart();
+
+        }else{
+            res.render('error',{
+            title: "Error...",
+            message:"Sorry, we could not process your cart, Please try it again later."
+
+        })
+    }
     }).then(result =>{
         res.redirect('/cart');
     }).catch(err =>{
