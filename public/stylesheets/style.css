@@ -1229,7 +1229,7 @@ font-family: 'Lato', sans-serif;
   border-top: 0.5px solid  #244657;
   margin-bottom:10px ;
   font-weight: bold;
-  font-family: 'Zapf Dingbats';
+  
 }
 .accordion p{
   font-family: 'Source Sans Pro', sans-serif;
@@ -1255,6 +1255,7 @@ font-family: 'Lato', sans-serif;
   content: "\2B9D";
   color:#244657;
   font-size: 10px;
+  font-family: 'Zapf Dingbats';
 }
 
 .small-cart-container{
