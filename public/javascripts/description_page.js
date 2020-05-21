@@ -1,7 +1,6 @@
 $(document).ready(function(){
   var description = $("#description");
   var spec = $("#spec");
-
   if(spec.height()>description.height() || spec.height()>>400){
   }else{
     $("#spec").css("height",description.height())
@@ -20,13 +19,13 @@ $(document).ready(function(){
   if(description.height()>500){
     //description.css("overflow-y","scroll");
   }
-
 $("#description").css("display","block");
     var tablinks =$(".tablinks"); 
     $(tablinks[0]).addClass("active");
     $("#spec").css("display","none");
     
 })
+
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
 
@@ -69,7 +68,6 @@ $("#description").css("display","block");
         }
         $(acc).addClass("active1");
         height = $(".content").height()+30;
-        console.log(height);
         $("."+panelName).css('height',height);
         
       }
