@@ -119,7 +119,7 @@ exports.postEditProduct = (req, res, next) => {
             user:req.user
           })
       }else{
-        res.redirect('/?page=3');
+        res.redirect('/');
       }
     })
 };
