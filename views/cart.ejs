@@ -78,6 +78,7 @@
                     <div class="item"><%= products[i].productId.name %></div>
                     <div class="item">RM <%= products[i].productId.price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") %></div>
                     <div class="item">
+                        <div class="update">
                         <form action="/updateCart" method="POST" class="loading-form">
                         <div class="update"><select style="margin: 0px;" id="product-quantity" name="quantity"
                                 required>
@@ -112,6 +113,7 @@
                             <input type="hidden" name="_csrf" value="<%=csrfToken %>">
                             <button  type = "submit" class="submit">update</button>
                         </form>
+                    </div>
                         </div>
                     </div>
                     <div class="item">

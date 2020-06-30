@@ -553,8 +553,7 @@ input{
 /* detail-page */
 
 .detail-container{
-  margin-right:100px;
-  margin-left:100px;
+  margin:auto;
   width:1300px;
   height:auto;
 }
