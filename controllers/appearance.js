@@ -1,0 +1,3 @@
+const Appearance=require('../models/appearance'),themes=require('../services/themes');
+exports.get=(req,res)=>res.render('appearance',{title:'Site appearance',themes,loggedIn:true,role:req.user.role,user:req.user,csrfToken:req.csrfToken(),saved:req.query.saved==='1'});
+exports.save=async(req,res,next)=>{try{if(!themes.some(t=>t.id===req.body.theme))return res.status(400).send('Choose an available theme.');await Appearance.findOneAndUpdate({_id:'site'},{$set:{theme:req.body.theme,heroFollowsTheme:req.body.heroFollowsTheme==='on'}},{upsert:true,runValidators:true});res.redirect('/admin/appearance?saved=1');}catch(e){next(e)}};

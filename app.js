@@ -71,6 +71,7 @@ app.get('/api/exchange-rates', async (req,res) => {
   try { res.json(await require('./services/exchange-rates').getRates()); }
   catch { res.status(503).json({message:'Exchange rates are unavailable. Prices remain in MYR.'}); }
 });
+app.use(async(req,res,next)=>{try{const appearance=await require('./models/appearance').findById('site').lean();res.locals.siteTheme=appearance?.theme||'forest';res.locals.heroFollowsTheme=appearance?.heroFollowsTheme||false;next();}catch(e){next(e)}});
 // setup route middlewares
 app.use('/', indexRouter);
 app.use('/', usersRouter);

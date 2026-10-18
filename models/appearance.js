@@ -1,0 +1,1 @@
+const mongoose=require('mongoose');module.exports=mongoose.model('Appearance',new mongoose.Schema({_id:{type:String,default:'site'},theme:{type:String,enum:require('../services/themes').map(t=>t.id),default:'forest'},heroFollowsTheme:{type:Boolean,default:false}}));

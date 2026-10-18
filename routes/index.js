@@ -33,6 +33,9 @@ router.get('/admin/orders',logged.checkAuth,(req,res,next)=>{if(req.user?.role!=
 router.get('/admin/reports',logged.checkAuth,(req,res,next)=>{if(req.user?.role!=='admin')return res.status(403).send('Administrator access required.');next();},csrfProtection,require('../controllers/reports').get);
 const homepage=require('../controllers/homepage');
 const homeAdmin=(req,res,next)=>{if(req.user?.role!=='admin')return res.status(403).send('Administrator access required.');next();};
+const appearance=require('../controllers/appearance');
+router.get('/admin/appearance',logged.checkAuth,homeAdmin,csrfProtection,appearance.get);
+router.post('/admin/appearance',logged.checkAuth,homeAdmin,csrfProtection,appearance.save);
 router.get('/admin/homepage',logged.checkAuth,homeAdmin,csrfProtection,homepage.get);
 router.post('/admin/homepage',logged.checkAuth,homeAdmin,csrfProtection,homepage.save);
 /* Cart */
