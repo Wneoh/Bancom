@@ -1,13 +1,1 @@
-$( document ).ready(function() {
-
- $("textarea").trumbowyg(
-  {
-      btns: [
-        ['undo'],['redo'],['strong'],['unorderedList'],['orderedList'],['fontsize']
-            ],
-  },
-  {
-    tagsToRemove: ['script', 'link']
-  });
-
-})
+if(window.jQuery){jQuery(function($){if($.fn.trumbowyg){$('textarea').not('.admin-editor textarea, #hero-editor textarea').trumbowyg({btns:[['undo','redo'],['strong'],['unorderedList','orderedList']],tagsToRemove:['script','link']});}});}

@@ -1,0 +1,1 @@
+<%if(role==='admin'){%><nav class="order-view-tabs" aria-label="Order views"><a href="/admin/orders" <%-adminView?'aria-current="page"':''%>>Customer orders <span>All customers</span></a><a href="/order" <%-!adminView?'aria-current="page"':''%>>My purchases <span>Your account only</span></a></nav><%}%>

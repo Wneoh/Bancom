@@ -1,0 +1,2 @@
+const accountMenu=document.querySelector('.account-menu');
+if(accountMenu){const currency=document.querySelector('.currency-menu');accountMenu.addEventListener('toggle',()=>{if(accountMenu.open && currency)currency.open=false;});currency?.addEventListener('toggle',()=>{if(currency.open)accountMenu.open=false;});document.addEventListener('click',event=>{if(!accountMenu.contains(event.target))accountMenu.open=false;});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&accountMenu.open){accountMenu.open=false;accountMenu.querySelector('summary').focus();}});}

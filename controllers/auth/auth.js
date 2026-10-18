@@ -77,12 +77,13 @@ exports.postLogin=(req,res,next)=>{
                   })
             }else{
                  bcrypt.compare(password, user.password).then(passwordMatch=>{
+                  if(!passwordMatch){ return res.status(401).render('auth/login', {title:'Login',old_email:email,error:'Invalid password or email.',csrfToken:req.csrfToken(),loggedIn:false,role:undefined}); }
                   if(passwordMatch){
                         req.session.loggedIn = true;
                         req.session.user =user
                         req.session.role =user.role
                         return req.session.save(result =>{
-                              res.redirect('/');
+                              res.redirect(require('../../middleware/profileRequired').complete(user) ? '/' : '/profile?welcome=1');
                         })
                   }
                  }).catch(err=>{

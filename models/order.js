@@ -3,6 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
+    checkoutKey: {type:String, unique:true, sparse:true},
+    delivery: Object,
+    payment: {mode:String,status:String,method:String,reference:String,paidAt:String},
+    subtotal: Number,
+    shipping: Number,
+    tax: Number,
+
     products:[{
         productData: {type: Object, required:true},
         quantity: {type:Number, required:true},

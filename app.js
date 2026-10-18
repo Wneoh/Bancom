@@ -14,7 +14,7 @@ const helmet = require('helmet');
 const MongoDBStore = require('connect-mongodb-session')(session);
 var app = express();
 
-const MONGODB_URI =`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@bananacom0-glvvj.mongodb.net/${process.env.MONGO_DEFAULT_DB}`
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/bancom';
 const store = new MongoDBStore({
   uri:MONGODB_URI,
   collection: 'sessions'
@@ -32,7 +32,7 @@ app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser())
 app.use(session({
-  secret:'wneoh secret at Bancom',
+  secret: process.env.SESSION_SECRET || require('crypto').randomBytes(32).toString('hex'),
   resave:false,
   saveUninitialized:false,
   store:store,
@@ -51,6 +51,26 @@ app.use((req, res, next) => {
       console.log(err));
 });
 
+app.use((req, res, next) => {
+  res.locals.paymentError = req.session.paymentError || '';
+  if(req.path==='/cart' || req.path==='/checkout') delete req.session.paymentError;
+  res.locals.currentProfile = req.user || null;
+  res.locals.profileComplete = require('./middleware/profileRequired').complete(req.user);
+  res.locals.bagQuantities = Object.fromEntries(req.user ? req.user.cart.items.map(item=>[item.productId.toString(),item.quantity]) : []);
+  res.locals.bagProductIds = req.user ? req.user.cart.items.map(item => item.productId.toString()) : [];
+  res.locals.cartCount = req.user ? req.user.cart.items.reduce((sum,item)=>sum+item.quantity,0) : 0;
+  next();
+});
+app.locals.money = value => {
+  const amount = Number(value);
+  if (!Number.isFinite(amount)) return '—';
+  return '<span data-myr="'+amount+'">RM '+amount.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span>';
+};
+app.get('/api/exchange-rates', async (req,res) => {
+  res.set('Cache-Control','no-store');
+  try { res.json(await require('./services/exchange-rates').getRates()); }
+  catch { res.status(503).json({message:'Exchange rates are unavailable. Prices remain in MYR.'}); }
+});
 // setup route middlewares
 app.use('/', indexRouter);
 app.use('/', usersRouter);
@@ -86,7 +106,8 @@ mongoose.connect(MONGODB_URI,{
   useFindAndModify: false   
 })
 .then(result =>{
-  app.listen(process.env.PORT || 3000);
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => console.log(`Bancom is running at http://localhost:${port}`));
 })
 .catch(err =>{
   console.log(err);

@@ -10,6 +10,9 @@ var csrfProtection = csrf({ cookie: true })
 var parseForm = bodyParser.urlencoded({ extended: true }) 
 var router = express.Router();
 
+const profile=require('../controllers/profile');
+router.get('/profile',logged.checkAuth,csrfProtection,profile.get);
+router.post('/profile',logged.checkAuth,csrfProtection,require('../middleware/avatarUpload'),profile.save);
 /* Auth */
 
 

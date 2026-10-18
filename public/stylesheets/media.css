@@ -151,7 +151,7 @@
         display: none;
     }
     .mini-title{
-        font-family: 'Lato', sans-serif;
+        font-family: var(--font-sans, Arial, sans-serif);
         color: black;
     }
 
@@ -163,7 +163,7 @@
     }
     .order-container h3{
         padding-left: 10px;
-        font-family: 'Lato', sans-serif;
+        font-family: var(--font-sans, Arial, sans-serif);
         color: black;
     }
     #date{

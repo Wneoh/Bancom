@@ -1,0 +1,11 @@
+<% const inBag = bagQuantities[item._id.toString()] || 0; %>
+<div class="bag-product-action <%=detail ? 'bag-product-detail' : ''%>" data-bag-product="<%=item._id%>">
+  <p class="in-bag-status" role="status" <%=inBag ? '' : 'hidden'%>>✓ <span data-bag-quantity><%=inBag%></span> in your bag</p>
+  <form class="card-buy" action="/cart" method="POST">
+    <input type="hidden" name="_csrf" value="<%=csrfToken%>"><input type="hidden" name="pId" value="<%=item._id%>">
+    <label class="bag-quantity-label" for="bag-qty-<%=item._id%>">Quantity <span>(total in bag)</span></label>
+    <div class="bag-add-controls"><div class="bag-picker"><button type="button" data-bag-step="-1" aria-label="Decrease quantity for <%=item.name%>"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14"/></svg></button><input id="bag-qty-<%=item._id%>" aria-label="Quantity for <%=item.name%>" name="quantity" type="number" min="1" max="99" step="1" value="<%=inBag || 1%>" required><button type="button" data-bag-step="1" aria-label="Increase quantity for <%=item.name%>"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></svg></button></div><button class="bag-submit" type="submit" aria-label="<%=inBag ? 'Update' : 'Add'%> <%=item.name%> in bag"><span data-bag-label><%=inBag ? 'Update bag' : 'Add to bag'%></span></button></div>
+    <button class="quick-buy" type="submit" formaction="/checkout/start">Buy now <span aria-hidden="true">↗</span></button>
+  </form>
+  <a class="in-bag-link" href="/cart" <%=inBag ? '' : 'hidden'%>>View bag ↗</a>
+</div>

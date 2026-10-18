@@ -141,7 +141,7 @@ body{
   padding-bottom: 50px;
 }
 html{
-  font-family:  Akzidenz,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
 
 }
 
@@ -213,7 +213,7 @@ html{
 }
 .filter-title{
   font-weight: bold;
-  font-family: Akzidenz,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
 }
 
 .filter-list{
@@ -318,7 +318,7 @@ html{
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   width: 100px;
@@ -428,7 +428,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px; */
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   width:295px;
@@ -443,7 +443,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px; */
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   width:295px;
@@ -455,7 +455,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px; */
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
 }
 
@@ -481,7 +481,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   width: 200px;
@@ -501,7 +501,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   width: 150px;
@@ -633,7 +633,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   margin: auto 20px auto auto;
@@ -653,7 +653,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #244657;
   width: 200px;
@@ -716,13 +716,13 @@ input{
   width:inherit;
 }
 .tablinks{
-  font-family: 'Lato', sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
   font-size:20px;
 }
 
 .tabcontent{
   font-size: 17px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
 }
 /** Login Page **/
 
@@ -822,7 +822,7 @@ input{
  padding-left:15px;
  font-weight: bold;
  color:white;
- font-family: 'Lato', sans-serif;
+ font-family: var(--font-sans, Arial, sans-serif);
 }
 .cart-item{
   display: flex;
@@ -841,7 +841,7 @@ input{
 }
 .item{
   flex:1;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
   padding-left:15px;
   margin: 25px 0 0 0;
 }
@@ -876,7 +876,7 @@ input{
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
   font-size: 14px;
-  font-family: 'Akzidenz','Helvetica Neue',Helvetica,Arial,sans-serif;;
+  font-family: var(--font-sans, Arial, sans-serif);;
   display:block;
   border:1px solid #c4c2c2;
   width: 50px;
@@ -998,7 +998,7 @@ flex-direction: column;
 .order-container .item{
   margin: 0px;
   flex:1;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
 }
 
 .order-container .item:nth-child(3){
@@ -1087,11 +1087,11 @@ flex-direction: column;
 }
 
 .error-container{
-font-family: 'Lato', sans-serif;
+font-family: var(--font-sans, Arial, sans-serif);
 }
 
 .filter-container{
-  font-family: 'Lato', sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
 }
 
 .error-container img{
@@ -1168,7 +1168,7 @@ font-family: 'Lato', sans-serif;
   color: black;
   display: block;
   transition: 0.3s;
-  font-family: 'Lato', sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
   margin-top:2px;
 }
 
@@ -1231,7 +1231,7 @@ font-family: 'Lato', sans-serif;
   
 }
 .accordion p{
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
 }
 .accordion:after {
   content: '\2B9F'; /* Unicode character for "plus" sign (+) */
@@ -1254,7 +1254,7 @@ font-family: 'Lato', sans-serif;
   content: "\2B9D";
   color:#244657;
   font-size: 10px;
-  font-family: 'Zapf Dingbats';
+  font-family: var(--font-sans, Arial, sans-serif);
 }
 
 .small-cart-container{

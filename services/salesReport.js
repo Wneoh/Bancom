@@ -1,0 +1,7 @@
+exports.summarize=orders=>{
+ const products=new Map(),categories=new Map(),days=new Map(),customers=new Set();let gross=0,merchandise=0,shipping=0,tax=0,units=0;
+ for(const order of orders){gross+=Math.round(order.total*100);shipping+=Math.round((order.shipping||0)*100);tax+=Math.round((order.tax||0)*100);customers.add(String(order.user.userId));
+ const date=new Date(new Date(order.orderDate).getTime()+8*3600000).toISOString().slice(0,10);const day=days.get(date)||{date,orders:0,total:0};day.orders++;day.total+=Math.round(order.total*100);days.set(date,day);
+ for(const item of order.products){const p=item.productData,key=String(p._id||p.name),cents=Math.round(item.subTotal*100);units+=item.quantity;merchandise+=cents;const row=products.get(key)||{name:p.name,category:p.catagory||'Other',units:0,revenue:0,orders:0};row.units+=item.quantity;row.revenue+=cents;row.orders++;products.set(key,row);const cat=categories.get(row.category)||{name:row.category,units:0,revenue:0};cat.units+=item.quantity;cat.revenue+=cents;categories.set(row.category,cat);}}
+ return {orders:orders.length,gross:gross/100,merchandise:merchandise/100,shipping:shipping/100,tax:tax/100,units,customers:customers.size,average:orders.length?gross/100/orders.length:0,products:[...products.values()].sort((a,b)=>b.units-a.units||b.revenue-a.revenue),categories:[...categories.values()].sort((a,b)=>b.revenue-a.revenue),days:[...days.values()].sort((a,b)=>a.date.localeCompare(b.date))};
+};

@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
+    tags: {type:[String],default:[]},
+    isDemo: {type:Boolean, default:false},
+    createdAt: {type:Date, default:Date.now},
     name:{
         type:String,
         required:true,

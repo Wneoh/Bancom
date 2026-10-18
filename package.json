@@ -2,12 +2,13 @@
   "name": "bananacom",
   "version": "0.0.0",
   "engines": {
-    "node": "12.16.2"
+    "node": "24.x"
   },
   "scripts": {
-    "start": "NODE_ENV=production&& MONGO_USER=wneoh MONGO_PASSWORD=wneoh MONGO_DEFAULT_DB=bancom node app.js",
-    "start-server": "node app.js",
-    "dev": "NODE_ENV=development && nodemon app.js"
+    "start": "node --env-file-if-exists=.env app.js",
+    "start-server": "node --env-file-if-exists=.env app.js",
+    "dev": "node --watch --env-file-if-exists=.env app.js",
+    "seed": "node --env-file-if-exists=.env scripts/seed.js"
   },
   "author": "wneoh",
   "license": "ISC",

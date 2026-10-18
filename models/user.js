@@ -20,6 +20,9 @@ const userSchema = new Schema({
         enum : ['user','admin'],
         default: 'user'
     },
+    phone: {type:String,default:''},
+    address: {line1:String,line2:String,city:String,region:String,postalCode:String,country:String},
+    avatar: {data:String,contentType:String},
     resetToken: String,
     resetTokenExpiration:Date,
     cart:{
@@ -76,28 +79,14 @@ userSchema.methods.removeFromCart = function(pId){
     return this.save();
 }
 
-userSchema.methods.updateToCart = async function(pId,quantity){
-    
-    const updatedCartItems = this.cart.items.filter(item=>{
-        return item.productId.toString() !== pId.toString();
-    })
-    if(updatedCartItems){
-        for(var i =0;i<updatedCartItems.length;i++){
-            if(updatedCartItems[i]._id.toString() === pId.toString()){
-                updatedCartItems[i].quantity=quantity;
-            }
-        }
-        const updatedCart ={
-            items:updatedCartItems
-        };
-        this.cart = updatedCart;
-    }
-    return await this.save();
-
-}
+userSchema.methods.updateToCart = function(itemId, quantity) {
+    const item = this.cart.items.id(itemId);
+    if (item) item.quantity = quantity;
+    return this.save();
+};
 
 userSchema.methods.clearCart = function(){
-    this.cart = {item:[]};
+    this.cart = {items:[]};
     return this.save();
 }
 module.exports = mongoose.model('User',userSchema);

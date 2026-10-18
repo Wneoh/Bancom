@@ -23,7 +23,7 @@ function makeMulterUploadMiddleware(multerUploadFunction) {
                 specs: pspecs,
             })
             if (err instanceof multer.MulterError){
-                err_msg ="Only 3 images are allowed"
+                err_msg ="Choose up to 3 images, each no larger than 2 MB"
                     return res.status(500).json(
                         res.render('add_product', {
                           title: 'Add Product',
@@ -77,7 +77,7 @@ const fileFilter = (req, files, cb) => {
     }
 };
 var upload = multer({ storage: storage , fileFilter: fileFilter ,limits: {
-    fieldSize:  2 * 1024 * 1024  // 2 MB (max file size)
+    fileSize:  2 * 1024 * 1024  // 2 MB (max file size)
 }})
 
 module.exports.upload = function(filename) {
